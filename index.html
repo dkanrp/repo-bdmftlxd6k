@@ -4374,16 +4374,27 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     }
 
     function buildDistribution(total){
+      /* A part can never be asked for more questions than it has distinct concepts, otherwise the
+         pool has to reuse one and the same question comes back twice in one exam (only the numbers
+         and answer order differ). Part 3~5 have 16 concepts each, so the old flat cap of 18 could
+         force exactly that. */
+      var caps = {};
+      PARTS.forEach(function(p){ caps[p] = Math.min(18, conceptsForPart(p).length); });
       var base = Math.floor(total / PARTS.length);
       var counts = {};
-      PARTS.forEach(function(p){ counts[p] = base; });
-      var remainder = total - base * PARTS.length;
-      for(var i = 0; i < remainder; i++){ counts[PARTS[i % PARTS.length]]++; }
+      PARTS.forEach(function(p){ counts[p] = Math.min(base, caps[p]); });
+      var assigned = PARTS.reduce(function(sum, p){ return sum + counts[p]; }, 0);
+      var guard = 0;
+      while(assigned < total && guard++ < 500){
+        for(var i = 0; i < PARTS.length && assigned < total; i++){
+          if(counts[PARTS[i]] < caps[PARTS[i]]){ counts[PARTS[i]]++; assigned++; }
+        }
+      }
       var shifts = RNG.int(4, 8);
       for(var s = 0; s < shifts; s++){
         var a = RNG.pick(PARTS), b = RNG.pick(PARTS);
         if(a === b) continue;
-        if(counts[a] > 6 && counts[b] < 18){ counts[a]--; counts[b]++; }
+        if(counts[a] > 6 && counts[b] < caps[b]){ counts[a]--; counts[b]++; }
       }
       return counts;
     }
@@ -4487,6 +4498,11 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       list.innerHTML = '';
       questionMeta = [];
       resetReviewFilter();
+      /* The review filter belongs to the results screen only — if a previous exam's results were
+         left open it would otherwise stay on screen during the new exam, where its 맞은/틀린 filters
+         can hide live questions mid-test. */
+      if(reviewFilterEl) reviewFilterEl.hidden = true;
+      if(reviewEmptyEl) reviewEmptyEl.hidden = true;
       var durationMin = clampNum(durationInput, 60, 5, 180);
       var warn1Min = clampNum(warn1Input, 30, 1, durationMin - 1);
       var warn2Min = clampNum(warn2Input, 15, 1, durationMin - 1);
