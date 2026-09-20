@@ -345,6 +345,16 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .ghit-title{font-weight:700;color:var(--ink);font-size:.9rem;}
 .ghit-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.12rem .5rem;white-space:nowrap;}
 .ghit-snippet{font-size:.8rem;color:var(--ink-soft);line-height:1.45;}
+.ghit-snippet mark, .ghit-title mark{background:var(--highlight-bg,#ffe8a3);color:var(--ink);border-radius:3px;padding:0 .1em;font-weight:700;}
+.search-flash{
+  animation:searchflash 2.4s ease-out;
+  border-radius:6px;
+}
+@keyframes searchflash{
+  0%{background:var(--highlight-bg,#ffe8a3);box-shadow:0 0 0 6px var(--highlight-bg,#ffe8a3);}
+  70%{background:var(--highlight-bg,#ffe8a3);box-shadow:0 0 0 6px var(--highlight-bg,#ffe8a3);}
+  100%{background:transparent;box-shadow:0 0 0 0 transparent;}
+}
 .examresume{
   display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:0 0 1rem;padding:.8rem 1rem;
   background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;color:var(--accent-strong);font-size:.88rem;
@@ -637,6 +647,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <div class="navrow"><input type="checkbox" data-progress="part6"><button class="nav-item" data-target="part6">Part 6 · 실전 모의고사</button></div>
 
       <div class="nav-label">참고자료</div>
+      <div class="navrow"><button class="nav-item" data-target="search">전체 검색</button></div>
       <div class="navrow"><button class="nav-item" data-target="glossary">용어 정리</button></div>
 
       <div class="nav-label">마무리</div>
@@ -2274,6 +2285,31 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <div id="examResults" class="examresults" hidden></div>
     </section>
 
+    <!-- ================= SITE SEARCH ================= -->
+    <section class="page" id="search" hidden>
+      <header class="page-head">
+        <p class="eyebrow">Reference</p>
+        <h2>전체 검색</h2>
+        <p class="lede">노트 전체(소개 &amp; Part 1~5 이론)의 본문·표·목록을 단어, 문장, 기호로 찾습니다. 결과를 누르면 그 문장이 있는 자리로 바로 이동해 표시해 줍니다.</p>
+      </header>
+      <div class="glossary-toolbar">
+        <input type="text" id="siteSearch" class="glossary-search" placeholder="🔍 무엇이든 검색 (예: 키르히호프, 역률, Ω, 2πfL, 주파수가 높을수록)">
+        <div class="reviewfilter-row" id="siteSearchFilter">
+          <button type="button" class="rfpill active" data-spart="">전체</button>
+          <button type="button" class="rfpill" data-spart="intro">소개</button>
+          <button type="button" class="rfpill" data-spart="part1">Part 1</button>
+          <button type="button" class="rfpill" data-spart="part2">Part 2</button>
+          <button type="button" class="rfpill" data-spart="part3">Part 3</button>
+          <button type="button" class="rfpill" data-spart="part4">Part 4</button>
+          <button type="button" class="rfpill" data-spart="part5">Part 5</button>
+        </div>
+      </div>
+      <p id="siteSearchCount" class="concept-note"></p>
+      <div id="siteSearchResults" class="glossary-hitlist"></div>
+      <p id="siteSearchEmpty" class="reviewfilter-empty" hidden>검색 결과가 없습니다. 더 짧은 단어로 검색해 보세요.</p>
+      <p id="siteSearchHint" class="concept-note">검색어를 입력하면 노트 본문에서 일치하는 문장을 모두 찾아 보여줍니다.</p>
+    </section>
+
     <!-- ================= GLOSSARY ================= -->
     <section class="page" id="glossary" hidden>
       <header class="page-head">
@@ -2403,12 +2439,15 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       </div>
 
       <h3>이론 강조 표시 설정</h3>
-      <p class="concept-note" style="margin:0 0 .6rem;">Part 1~5 연습문제의 "📍 이론 보기" 버튼과 Part 6 모의고사 결과 복습의 "이동" 버튼 모두에 공통으로 적용되는 설정입니다.</p>
+      <p class="concept-note" style="margin:0 0 .6rem;">Part 1~5 연습문제의 "📍 이론 보기" 버튼, Part 6 모의고사 결과 복습의 "이동" 버튼, 그리고 "전체 검색" 결과 이동에 공통으로 적용되는 설정입니다.</p>
       <div class="tablewrap">
         <table>
           <tbody>
             <tr><td>강조 유지시간</td><td>
               <input type="number" id="examHighlightInput" class="examnuminput" value="5" min="1" max="60">분 — "이론 보기"/"이동" 버튼으로 해당 이론으로 갔을 때 강조 표시가 유지되는 시간
+            </td></tr>
+            <tr><td>검색 결과 강조 시간</td><td>
+              <input type="number" id="searchFlashInput" class="examnuminput" value="3" min="1" max="30">초 — "전체 검색" 결과를 눌러 본문으로 이동했을 때 그 문장이 깜빡이며 강조되는 시간
             </td></tr>
             <tr><td>돌아가기 시 강조 즉시 해제</td><td>
               <label class="togglelabel"><input type="checkbox" id="examHighlightClearOnReturnInput" checked> "◀ 풀던 문제로 돌아가기" 버튼을 누르면 이론 페이지의 강조 표시를 유지시간과 상관없이 바로 꺼줍니다 (끄면 위 유지시간이 다 될 때까지 강조가 남아있습니다)</label>
@@ -2465,7 +2504,18 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-target]'));
   var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
 
-  function show(id){
+  var contentEl = document.querySelector('.content');
+  /* Under 800px the sidebar stacks ABOVE the content, so scrolling to the document top after a
+     page switch lands on the nav list again and the new page looks like nothing happened —
+     scroll to the top of the content area instead so the new page's title is what you land on. */
+  function scrollToPageTop(){
+    if(contentEl && window.matchMedia('(max-width:800px)').matches){
+      window.scrollTo(0, contentEl.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0));
+    } else {
+      window.scrollTo(0,0);
+    }
+  }
+  function show(id, fromNav){
     pages.forEach(function(p){ p.hidden = (p.id !== id); });
     buttons.forEach(function(b){
       if(b.classList.contains('nav-item')){
@@ -2473,13 +2523,13 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       }
     });
     try{ localStorage.setItem('ecn-page', id); }catch(e){}
-    window.scrollTo(0,0);
+    if(fromNav === false){ window.scrollTo(0,0); } else { scrollToPageTop(); }
   }
 
   buttons.forEach(function(b){
     b.addEventListener('click', function(e){
       e.preventDefault();
-      show(b.getAttribute('data-target'));
+      show(b.getAttribute('data-target'), true);
     });
   });
 
@@ -2488,7 +2538,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     var saved = localStorage.getItem('ecn-page');
     if(saved && document.getElementById(saved)){ start = saved; }
   }catch(e){}
-  show(start);
+  show(start, false);
 
   /* ---------- 화면 설정: 테마 / 글자 크기 ---------- */
   (function(){
@@ -2528,6 +2578,16 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         var pct = parseInt(fontInput.value, 10) || 100;
         applyFontScale(pct);
         try{ localStorage.setItem('ecn-font-scale', String(pct)); }catch(e){}
+      });
+    }
+    var flashInput = document.getElementById('searchFlashInput');
+    if(flashInput){
+      try{
+        var savedFlash = parseInt(localStorage.getItem('ecn-search-flash'), 10);
+        if(!isNaN(savedFlash)) flashInput.value = Math.max(1, Math.min(30, savedFlash));
+      }catch(e){}
+      flashInput.addEventListener('change', function(){
+        try{ localStorage.setItem('ecn-search-flash', String(flashInput.value)); }catch(e){}
       });
     }
   })();
@@ -3575,6 +3635,126 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     });
     return index;
   }
+  /* ---------- 노트 전체 본문 검색 ---------- */
+  var SEARCH_PAGES = [
+    { id:'intro', label:'소개' },
+    { id:'part1', label:'Part 1 전기 기초이론' },
+    { id:'part2', label:'Part 2 반도체·아날로그' },
+    { id:'part3', label:'Part 3 디지털 논리회로' },
+    { id:'part4', label:'Part 4 전자계측' },
+    { id:'part5', label:'Part 5 설계·부품·검증' }
+  ];
+  var SITE_INDEX = null;
+  /* Indexes only "leaf" blocks (a block containing no other block) so a paragraph isn't also
+     returned as part of its wrapper, and skips .practice areas because those question cards are
+     regenerated with new random numbers on every refresh — a hit there would not be reproducible. */
+  function buildSiteIndex(){
+    var BLOCK_SEL = 'h3, h4, p, li, td, th, blockquote, figcaption, dd, dt';
+    var entries = [];
+    SEARCH_PAGES.forEach(function(page){
+      var container = document.getElementById(page.id);
+      if(!container) return;
+      var section = '';
+      Array.prototype.slice.call(container.querySelectorAll('h3, ' + BLOCK_SEL)).forEach(function(el){
+        if(el.closest('.practice')) return;
+        if(el.tagName === 'H3'){ section = el.textContent.trim(); }
+        if(el.querySelector(BLOCK_SEL)) return;
+        var text = el.textContent.replace(/\s+/g, ' ').trim();
+        if(text.length < 2) return;
+        entries.push({ page: page.id, pageLabel: page.label, section: section, text: text, el: el });
+      });
+    });
+    return entries;
+  }
+  function searchFlashSeconds(){
+    var input = document.getElementById('searchFlashInput');
+    var v = input ? parseInt(input.value, 10) : 3;
+    return isNaN(v) ? 3 : Math.max(1, Math.min(30, v));
+  }
+  function jumpToSearchHit(entry){
+    show(entry.page);
+    if(!entry.el) return;
+    var secs = searchFlashSeconds();
+    entry.el.scrollIntoView({ behavior:'smooth', block:'center' });
+    entry.el.classList.remove('search-flash');
+    void entry.el.offsetWidth;
+    entry.el.style.animationDuration = secs + 's';
+    entry.el.classList.add('search-flash');
+    setTimeout(function(){ entry.el.classList.remove('search-flash'); entry.el.style.animationDuration = ''; }, secs * 1000 + 100);
+  }
+  function setupSiteSearch(){
+    var inputEl = document.getElementById('siteSearch');
+    var resultsEl = document.getElementById('siteSearchResults');
+    var countEl = document.getElementById('siteSearchCount');
+    var emptyEl = document.getElementById('siteSearchEmpty');
+    var hintEl = document.getElementById('siteSearchHint');
+    var filterEl = document.getElementById('siteSearchFilter');
+    if(!inputEl || !resultsEl) return;
+    var activePage = '';
+    var lastHits = [];
+    var MAX_HITS = 80;
+    function esc(s){
+      return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
+    }
+    function snippet(text, at, qlen){
+      var start = Math.max(0, at - 55);
+      var end = Math.min(text.length, at + qlen + 85);
+      return (start > 0 ? '…' : '') + esc(text.slice(start, at)) +
+             '<mark>' + esc(text.slice(at, at + qlen)) + '</mark>' +
+             esc(text.slice(at + qlen, end)) + (end < text.length ? '…' : '');
+    }
+    function render(){
+      var q = inputEl.value.trim();
+      if(!q){
+        resultsEl.innerHTML = '';
+        countEl.textContent = '';
+        emptyEl.hidden = true;
+        hintEl.hidden = false;
+        lastHits = [];
+        return;
+      }
+      hintEl.hidden = true;
+      if(!SITE_INDEX) SITE_INDEX = buildSiteIndex();
+      var ql = q.toLowerCase();
+      var hits = [];
+      for(var i = 0; i < SITE_INDEX.length && hits.length < MAX_HITS; i++){
+        var e = SITE_INDEX[i];
+        if(activePage && e.page !== activePage) continue;
+        var at = e.text.toLowerCase().indexOf(ql);
+        if(at === -1) continue;
+        hits.push({ entry: e, at: at });
+      }
+      lastHits = hits;
+      resultsEl.innerHTML = hits.map(function(h, idx){
+        var e = h.entry;
+        return '<button type="button" class="ghit" data-hit="' + idx + '">' +
+          '<div class="ghit-head"><span class="ghit-title">' + esc(e.section || e.pageLabel) + '</span>' +
+          '<span class="ghit-part">' + esc(e.pageLabel) + '</span></div>' +
+          '<p class="ghit-snippet">' + snippet(e.text, h.at, q.length) + '</p>' +
+        '</button>';
+      }).join('');
+      countEl.textContent = hits.length ? ('"' + q + '" 검색 결과 ' + hits.length + '곳' + (hits.length >= MAX_HITS ? ' 이상 (상위 ' + MAX_HITS + '곳 표시)' : '')) : '';
+      emptyEl.hidden = hits.length > 0;
+    }
+    resultsEl.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-hit]') : null;
+      if(!btn) return;
+      var hit = lastHits[Number(btn.getAttribute('data-hit'))];
+      if(hit) jumpToSearchHit(hit.entry);
+    });
+    inputEl.addEventListener('input', render);
+    if(filterEl){
+      Array.prototype.slice.call(filterEl.querySelectorAll('.rfpill')).forEach(function(btn){
+        btn.addEventListener('click', function(){
+          activePage = btn.getAttribute('data-spart');
+          Array.prototype.slice.call(filterEl.querySelectorAll('.rfpill')).forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          render();
+        });
+      });
+    }
+  }
+
   function highlightAndJump(conceptId, sourceLi){
     var anchor = CONCEPT_ANCHOR[conceptId];
     if(!anchor) return;
@@ -4578,6 +4758,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   renderExamHistoryPage();
   renderCurriculumMap();
   setupGlossary();
+  setupSiteSearch();
 })();
 </script>
 <script>
