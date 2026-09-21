@@ -43,6 +43,10 @@
   --highlight-border:#e0b83c;
   --code-bg:#eceee2;
   --shadow:0 1px 2px rgba(20,25,18,.06),0 6px 16px rgba(20,25,18,.07);
+  /* Text that sits ON an accent/danger fill. The dark theme's accents are light colours,
+     so white lettering drops to 2.07:1 there — this flips with the theme instead. */
+  --on-accent:#ffffff;
+  --on-danger:#ffffff;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
@@ -68,6 +72,8 @@
     --highlight-border:#e2954f;
     --code-bg:#1b2119;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.4);
+    --on-accent:#10140f;
+    --on-danger:#10140f;
     color-scheme:dark;
   }
 }
@@ -93,6 +99,8 @@
   --highlight-border:#e2954f;
   --code-bg:#1b2119;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.4);
+    --on-accent:#10140f;
+    --on-danger:#10140f;
   color-scheme:dark;
 }
 *{box-sizing:border-box;}
@@ -231,7 +239,7 @@ strong{font-weight:600;}
   min-height:2rem;padding:.3rem .75rem;border-radius:999px;
   border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-strong);font-weight:600;
 }
-.updatebtn:hover{background:var(--accent);color:#fff;}
+.updatebtn:hover{background:var(--accent);color:var(--on-accent);}
 .updatebtn[disabled]{opacity:.6;cursor:default;}
 .updatestatus{font-size:.8rem;color:var(--ink-soft);margin-left:.5rem;}
 .updatestatus.ok{color:var(--diff-low);}
@@ -250,7 +258,7 @@ strong{font-weight:600;}
 .zoomhint:hover{border-color:var(--accent);color:var(--accent-strong);opacity:1;}
 .zoomoverlay{
   position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
-  background:rgba(8,14,20,.92);padding:.6rem;
+  background:rgba(8,14,20,.975);padding:.6rem;
 }
 .zoomstage{
   flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;
@@ -258,9 +266,12 @@ strong{font-weight:600;}
 }
 .zoomstage.dragging{cursor:grabbing;}
 .zoominner{transform-origin:center center;will-change:transform;}
+/* The diagram keeps drawing itself with the page's ink colours, so its backing surface has to come
+   from the same token set — a hardcoded white here left light strokes on a white card in dark mode. */
 .zoominner svg{
   width:min(92vw, 1100px);height:auto;max-height:none;
-  background:#fff;border-radius:8px;padding:.6rem;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;padding:.6rem;
 }
 .zoombar{
   display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;
@@ -278,7 +289,7 @@ strong{font-weight:600;}
 /* 간격 복습 */
 .navbadge{
   display:inline-block;margin-left:.4rem;min-width:1.5em;padding:.05rem .4rem;
-  border-radius:999px;background:var(--danger);color:#fff;
+  border-radius:999px;background:var(--danger);color:var(--on-danger);
   font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-align:center;
 }
 .reviewsummary{
@@ -290,7 +301,7 @@ strong{font-weight:600;}
 .reviewstart{
   font:inherit;font-size:.92rem;font-weight:700;cursor:pointer;margin-left:auto;
   min-height:34px;padding:.5rem 1.1rem;border-radius:8px;
-  border:1px solid var(--accent);background:var(--accent);color:#fff;
+  border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);
 }
 .reviewstart:hover{background:var(--accent-strong);border-color:var(--accent-strong);}
 .reviewstart[disabled]{opacity:.5;cursor:default;}
@@ -486,7 +497,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 }
 .examresume .examresume-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-left:auto;}
 .examresume button{font:inherit;font-size:.8rem;border-radius:6px;padding:.4rem .8rem;cursor:pointer;}
-.examresume .resume-go{background:var(--accent);color:#fff;border:1px solid var(--accent);font-weight:600;}
+.examresume .resume-go{background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);font-weight:600;}
 .examresume .resume-discard{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line);}
 .diff{
   font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.03em;
@@ -555,7 +566,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:.9rem 1rem 1rem;
 }
 .examstart-btn{
-  font:inherit;font-size:.92rem;font-weight:600;background:var(--accent);color:#fff;
+  font:inherit;font-size:.92rem;font-weight:600;background:var(--accent);color:var(--on-accent);
   border:none;border-radius:8px;padding:.65rem 1.4rem;cursor:pointer;
 }
 .examstart-btn:hover{background:var(--accent-strong);}
@@ -626,7 +637,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .examreturn-fab{
   position:fixed;right:1.2rem;bottom:1.2rem;z-index:50;
   font:inherit;font-size:.86rem;font-weight:600;
-  background:var(--accent);color:#fff;border:none;border-radius:999px;
+  background:var(--accent);color:var(--on-accent);border:none;border-radius:999px;
   padding:.7rem 1.2rem;cursor:pointer;box-shadow:var(--shadow);
 }
 .examreturn-fab:hover{background:var(--accent-strong);}
@@ -652,14 +663,14 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   background:var(--danger-soft);color:var(--danger);border:1px solid var(--danger);
   border-radius:6px;padding:.25rem .6rem;cursor:pointer;
 }
-.exammodal .unanswered-chip:hover{background:var(--danger);color:#fff;}
+.exammodal .unanswered-chip:hover{background:var(--danger);color:var(--on-danger);}
 .exammodal .allanswered{color:var(--accent-strong);font-size:.92rem;margin:.7rem 0 1rem;}
 .exammodal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:.5rem;}
 .exammodal-actions button{
   font:inherit;font-size:.86rem;border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;
 }
 .exammodal-cancel{background:var(--surface-2);border:1px solid var(--line);color:var(--ink);}
-.exammodal-confirm{background:var(--danger);border:none;color:#fff;font-weight:600;}
+.exammodal-confirm{background:var(--danger);border:none;color:var(--on-danger);font-weight:600;}
 .exammodal-confirm:hover{opacity:.9;}
 
 /* ---------- curriculum coverage map ---------- */
@@ -2656,7 +2667,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v96 (2026-09-21)</span>
+              <span class="mono" id="noteVersionLabel">v98 (2026-09-21)</span>
               <button type="button" id="updateCheckBtn" class="updatebtn">🔄 업데이트 확인</button>
               <span id="updateStatus" class="updatestatus" role="status" aria-live="polite"></span>
               <br>앱을 껐다 켜도 자동으로 최신 내용을 받아오지만, 지금 바로 확인하고 싶을 때 이 버튼을 누르세요.
