@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>전자기능사 필기 완성노트</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2f6f91">
+<meta name="theme-color" content="#1f6f4a">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <!--FONTS--><style>
@@ -110,7 +110,7 @@ body{
    has hidden them. */
 [hidden]{display:none !important;}
 a{color:var(--accent-strong);}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;}
 .layout{display:flex;min-height:100vh;}
 
@@ -125,16 +125,16 @@ a{color:var(--accent-strong);}
 .brand{display:flex;flex-direction:column;gap:.15rem;margin-bottom:1.4rem;}
 .brand .chip{
   align-self:flex-start;
-  font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.09em;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.09em;
   color:var(--accent-strong);background:var(--accent-soft);
-  padding:.2rem .5rem;border-radius:3px;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:6px;text-transform:uppercase;
   border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
 }
-.brand h1{font-size:1.05rem;font-weight:700;margin:.4rem 0 0;letter-spacing:-.01em;}
-.brand p{margin:.2rem 0 0;font-size:.78rem;color:var(--ink-soft);}
+.brand h1{font-size:1rem;font-weight:700;margin:.4rem 0 0;letter-spacing:-.01em;}
+.brand p{margin:.2rem 0 0;font-size:.8rem;color:var(--ink-soft);}
 
 .nav-label{
-  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);
   margin:1.15rem 0 .4rem;padding-left:.2rem;
 }
@@ -152,7 +152,7 @@ a{color:var(--accent-strong);}
 .nav-item:hover{background:var(--surface);}
 .nav-item.active{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow);font-weight:600;}
 .nav-item .tag{
-  font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--ink-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-soft);
   white-space:nowrap;
 }
 .nav-item.active .tag{color:var(--accent-strong);}
@@ -168,9 +168,9 @@ a{color:var(--accent-strong);}
 .page-head h2{font-size:clamp(1.5rem,2.6vw,1.9rem);margin:0 0 .5rem;text-wrap:balance;letter-spacing:-.01em;}
 .lede{margin:0;color:var(--ink-soft);font-size:1rem;max-width:62ch;}
 
-h3{font-size:1.08rem;margin:1.9rem 0 .7rem;font-weight:700;}
+h3{font-size:1.15rem;margin:1.9rem 0 .7rem;font-weight:700;}
 h3:first-child{margin-top:0;}
-h4{font-size:.94rem;margin:1.1rem 0 .4rem;font-weight:600;color:var(--ink);}
+h4{font-size:.92rem;margin:1.1rem 0 .4rem;font-weight:600;color:var(--ink);}
 p{margin:.5rem 0;max-width:66ch;}
 ul,ol{margin:.4rem 0 .9rem;padding-left:1.3rem;}
 li{margin:.28rem 0;max-width:64ch;}
@@ -183,7 +183,7 @@ strong{font-weight:600;}
 .formula{
   font-family:"IBM Plex Mono",monospace;background:var(--accent-soft);
   border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius:7px;padding:.6rem .9rem;margin:.5rem 0;display:inline-block;
+  border-radius:6px;padding:.6rem .9rem;margin:.5rem 0;display:inline-block;
   font-size:1rem;color:var(--accent-strong);line-height:1.9;
 }
 .frac{
@@ -227,13 +227,13 @@ strong{font-weight:600;}
 .fontscale-step:hover{border-color:var(--accent);color:var(--accent-strong);}
 .fontscale-step:active{background:var(--accent-soft);}
 .updatebtn{
-  font:inherit;font-size:.82rem;cursor:pointer;margin-left:.5rem;
+  font:inherit;font-size:.8rem;cursor:pointer;margin-left:.5rem;
   min-height:2rem;padding:.3rem .75rem;border-radius:999px;
   border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-strong);font-weight:600;
 }
 .updatebtn:hover{background:var(--accent);color:#fff;}
 .updatebtn[disabled]{opacity:.6;cursor:default;}
-.updatestatus{font-size:.82rem;color:var(--ink-soft);margin-left:.5rem;}
+.updatestatus{font-size:.8rem;color:var(--ink-soft);margin-left:.5rem;}
 .updatestatus.ok{color:var(--diff-low);}
 .updatestatus.fail{color:var(--danger);}
 
@@ -267,13 +267,45 @@ strong{font-weight:600;}
   padding:.5rem .3rem .2rem;
 }
 .zoombar button{
-  font:inherit;font-size:.9rem;cursor:pointer;
+  font:inherit;font-size:.92rem;cursor:pointer;
   min-width:44px;min-height:34px;padding:.35rem .8rem;border-radius:8px;
   border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;
 }
 .zoombar button:hover{background:rgba(255,255,255,.24);}
-.zoombar .zoomlevel{color:#fff;font-family:"IBM Plex Mono",monospace;font-size:.85rem;min-width:4.5em;text-align:center;}
+.zoombar .zoomlevel{color:#fff;font-family:"IBM Plex Mono",monospace;font-size:.86rem;min-width:4.5em;text-align:center;}
 .zoomcap{color:rgba(255,255,255,.8);font-size:.8rem;text-align:center;padding:0 .6rem .3rem;}
+
+/* 간격 복습 */
+.navbadge{
+  display:inline-block;margin-left:.4rem;min-width:1.5em;padding:.05rem .4rem;
+  border-radius:999px;background:var(--danger);color:#fff;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-align:center;
+}
+.reviewsummary{
+  display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin:0 0 1rem;padding:.9rem 1.1rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);
+}
+.reviewsummary .rvnum{font-family:"IBM Plex Mono",monospace;font-size:1.15rem;font-weight:700;color:var(--accent-strong);}
+.reviewsummary .rvlabel{color:var(--ink-soft);font-size:.86rem;}
+.reviewstart{
+  font:inherit;font-size:.92rem;font-weight:700;cursor:pointer;margin-left:auto;
+  min-height:34px;padding:.5rem 1.1rem;border-radius:8px;
+  border:1px solid var(--accent);background:var(--accent);color:#fff;
+}
+.reviewstart:hover{background:var(--accent-strong);border-color:var(--accent-strong);}
+.reviewstart[disabled]{opacity:.5;cursor:default;}
+.rvprogress{font-family:"IBM Plex Mono",monospace;font-size:.86rem;color:var(--ink-soft);margin:0 0 .6rem;}
+.rvdone{
+  padding:1.1rem;border-radius:8px;text-align:center;
+  background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent-strong);font-weight:600;
+}
+.rvsched{
+  display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.6rem .85rem;
+}
+.rvsched .rvtitle{font-weight:600;font-size:.86rem;}
+.rvsched .rvwhen{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink-soft);}
+.rvsched .rvstage{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--accent-2);background:var(--accent-2-soft);border-radius:999px;padding:.1rem .5rem;}
 /* WCAG 2.2 SC 2.5.8 (Target Size, Minimum): interactive controls need a 24x24 CSS px target.
    Inline links inside running text are exempt, so prose links are deliberately left alone. */
 .dpill, .rfpill, .fontscale-step, .updatebtn, .swatch, .choice,
@@ -289,20 +321,20 @@ input[type="range"]{height:24px;}
    column is narrower than that, so without allowing them to shrink they burst out of their box and
    the right-hand side of the circuit is simply cut off. */
 .circuit-fig svg{flex-shrink:1;max-width:100%;height:auto;}
-.circuit-fig .cap{font-size:.85rem;color:var(--ink-soft);max-width:32ch;}
+.circuit-fig .cap{font-size:.86rem;color:var(--ink-soft);max-width:32ch;}
 .circuit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.9rem;margin:.7rem 0 1.1rem;}
 .circuit-grid .circuit-fig{margin:0;height:100%;}
 
 .tablewrap{overflow-x:auto;margin:.8rem 0 1.2rem;border:1px solid var(--line);border-radius:8px;}
-table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:420px;}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:420px;}
 th,td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;}
-thead th{background:var(--accent-soft);color:var(--accent-strong);font-weight:600;font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.03em;}
+thead th{background:var(--accent-soft);color:var(--accent-strong);font-weight:600;font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.03em;}
 tbody tr:last-child td{border-bottom:none;}
 td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 
 .resistor-fig{display:flex;align-items:center;gap:1.1rem;margin:.6rem 0 1.1rem;flex-wrap:wrap;}
 .resistor-fig svg{flex-shrink:0;}
-.resistor-fig .cap{font-size:.84rem;color:var(--ink-soft);max-width:34ch;}
+.resistor-fig .cap{font-size:.86rem;color:var(--ink-soft);max-width:34ch;}
 
 .pv-fig{margin:.7rem 0 1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;box-shadow:var(--shadow);overflow-x:auto;}
 .pv-grid{display:inline-grid;margin-bottom:.5rem;min-width:100%;}
@@ -314,7 +346,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .pv-cell.on{background:var(--danger-soft);border-color:var(--danger);color:var(--danger);}
 .pv-cell.label{
   border:none;background:transparent;color:var(--ink-soft);font-family:inherit;font-weight:400;
-  font-size:.82rem;justify-content:flex-start;padding-left:.9rem;white-space:nowrap;
+  font-size:.8rem;justify-content:flex-start;padding-left:.9rem;white-space:nowrap;
 }
 .pv-sum{
   margin-top:.4rem;padding:.6rem .9rem;border:1px solid var(--line);border-radius:6px;
@@ -336,12 +368,12 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .scoretrack{
   display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;
   margin:0 0 1rem;padding:.6rem .9rem;background:var(--surface-2);
-  border:1px solid var(--line);border-radius:8px;font-size:.85rem;color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:8px;font-size:.86rem;color:var(--ink-soft);
 }
 .partdiffbar{
   display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;
   margin:0 0 .7rem;padding:.55rem .9rem;background:var(--surface-2);
-  border:1px solid var(--line);border-radius:8px;font-size:.82rem;color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:8px;font-size:.8rem;color:var(--ink-soft);
 }
 .partdiffbar .lbl{font-weight:600;color:var(--ink);}
 .partdiffbar .hint{flex-basis:100%;font-size:.74rem;color:var(--ink-soft);}
@@ -357,15 +389,15 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .qlist{list-style:none;margin:0;padding:0;}
 .qtoprow{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.55rem;flex-wrap:wrap;}
 .predicted-label, .pastexam-label, .analyzed-label{
-  display:inline-block;border:2px solid var(--accent);border-radius:10px;
-  padding:.4rem .8rem;font-weight:700;font-size:.82rem;
+  display:inline-block;border:2px solid var(--accent);border-radius:8px;
+  padding:.4rem .8rem;font-weight:700;font-size:.8rem;
   color:var(--accent-strong);background:var(--accent-soft);
 }
 .pastexam-label{border-color:var(--accent-2);color:var(--accent-2);background:var(--accent-2-soft);}
 .analyzed-label{border-color:var(--accent-3);color:var(--accent-3);background:var(--accent-3-soft);}
 .qtopbtns{display:flex;gap:.4rem;flex-wrap:wrap;}
 .qtoprow .reroll-btn, .qtoprow .theory-btn{
-  font:inherit;font-size:.72rem;background:var(--surface);
+  font:inherit;font-size:.7rem;background:var(--surface);
   border:1px solid var(--line);border-radius:6px;padding:.4rem .7rem;cursor:pointer;color:var(--accent-strong);
 }
 .qtoprow .reroll-btn:hover, .qtoprow .theory-btn:hover{border-color:var(--accent);}
@@ -376,13 +408,13 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .qhead{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap;}
 .qnum{font-family:"IBM Plex Mono",monospace;color:var(--accent-2);font-size:.8rem;}
 .qhead .diffpicker{margin-left:auto;}
-.concept-note{font-size:.85rem;color:var(--ink-soft);margin:0 0 1rem;}
-.togglelabel{display:flex;align-items:flex-start;gap:.5rem;font-size:.85rem;color:var(--ink-soft);cursor:pointer;line-height:1.5;}
+.concept-note{font-size:.86rem;color:var(--ink-soft);margin:0 0 1rem;}
+.togglelabel{display:flex;align-items:flex-start;gap:.5rem;font-size:.86rem;color:var(--ink-soft);cursor:pointer;line-height:1.5;}
 .togglelabel input{margin-top:.2rem;flex:none;}
 .diffpicker{display:flex;gap:.25rem;align-items:center;}
-.diffpicker .lbl{font-size:.68rem;color:var(--ink-soft);margin-right:.1rem;}
+.diffpicker .lbl{font-size:.7rem;color:var(--ink-soft);margin-right:.1rem;}
 .dpill{
-  font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+  font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.7rem;
   padding:.15rem .5rem;border-radius:999px;border:1px solid var(--line);
   background:var(--paper);cursor:pointer;color:var(--ink-soft);
 }
@@ -397,9 +429,9 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   background:var(--surface-2);border:1px solid var(--line);border-radius:8px;
 }
 .reviewfilter-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
-.reviewfilter .lbl{font-weight:600;color:var(--ink);font-size:.82rem;}
+.reviewfilter .lbl{font-weight:600;color:var(--ink);font-size:.8rem;}
 .reviewfilter .rfpill{
-  font:inherit;font-size:.78rem;padding:.35rem .8rem;border-radius:999px;
+  font:inherit;font-size:.8rem;padding:.35rem .8rem;border-radius:999px;
   min-height:24px;
   border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink-soft);
 }
@@ -408,8 +440,8 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .reviewfilter .rfpill.active[data-rf="wrong"]{background:var(--danger-soft);color:var(--danger);border-color:var(--danger);}
 .reviewfilter .rfpill.active[data-rf="correct"]{background:var(--diff-low-soft);color:var(--diff-low);border-color:var(--diff-low);}
 .reviewfilter-parts{padding-left:1.6rem;}
-.reviewfilter-parts .rfpill{font-size:.72rem;}
-.reviewfilter-empty{font-size:.85rem;color:var(--ink-soft);padding:1.2rem;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:8px;margin:0 0 .8rem;}
+.reviewfilter-parts .rfpill{font-size:.7rem;}
+.reviewfilter-empty{font-size:.86rem;color:var(--ink-soft);padding:1.2rem;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:8px;margin:0 0 .8rem;}
 .glossary-toolbar{display:flex;flex-direction:column;gap:.7rem;margin:0 0 .8rem;}
 .glossary-search{
   font:inherit;font-size:.92rem;padding:.65rem .9rem;border-radius:8px;
@@ -422,10 +454,10 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   padding:.8rem .9rem;box-shadow:var(--shadow);
 }
 .gcard-head{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem;}
-.gcard-term{font-weight:700;color:var(--ink);font-size:.95rem;}
-.gcard-symbol{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent-strong);background:var(--accent-soft);border-radius:5px;padding:.1rem .45rem;max-width:100%;overflow-wrap:break-word;}
-.gcard-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.15rem .55rem;white-space:nowrap;}
-.gcard-def{font-size:.85rem;color:var(--ink-soft);line-height:1.5;margin:0;}
+.gcard-term{font-weight:700;color:var(--ink);font-size:.92rem;}
+.gcard-symbol{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent-strong);background:var(--accent-soft);border-radius:6px;padding:.1rem .45rem;max-width:100%;overflow-wrap:break-word;}
+.gcard-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.15rem .55rem;white-space:nowrap;}
+.gcard-def{font-size:.86rem;color:var(--ink-soft);line-height:1.5;margin:0;}
 .glossary-group-title{font-size:.92rem;margin:1.1rem 0 .5rem;color:var(--accent-strong);}
 .glossary-hitlist{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.4rem;}
 .ghit{
@@ -435,10 +467,10 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 }
 .ghit:hover{border-color:var(--accent);}
 .ghit-head{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.2rem;}
-.ghit-title{font-weight:700;color:var(--ink);font-size:.9rem;}
-.ghit-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.12rem .5rem;white-space:nowrap;}
+.ghit-title{font-weight:700;color:var(--ink);font-size:.92rem;}
+.ghit-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.12rem .5rem;white-space:nowrap;}
 .ghit-snippet{font-size:.8rem;color:var(--ink-soft);line-height:1.45;}
-.ghit-snippet mark, .ghit-title mark{background:var(--highlight-bg,#ffe8a3);color:var(--ink);border-radius:3px;padding:0 .1em;font-weight:700;}
+.ghit-snippet mark, .ghit-title mark{background:var(--highlight-bg,#ffe8a3);color:var(--ink);border-radius:6px;padding:0 .1em;font-weight:700;}
 .search-flash{
   animation:searchflash 2.4s ease-out;
   border-radius:6px;
@@ -450,24 +482,24 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 }
 .examresume{
   display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:0 0 1rem;padding:.8rem 1rem;
-  background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;color:var(--accent-strong);font-size:.88rem;
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;color:var(--accent-strong);font-size:.86rem;
 }
 .examresume .examresume-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-left:auto;}
-.examresume button{font:inherit;font-size:.82rem;border-radius:6px;padding:.4rem .8rem;cursor:pointer;}
+.examresume button{font:inherit;font-size:.8rem;border-radius:6px;padding:.4rem .8rem;cursor:pointer;}
 .examresume .resume-go{background:var(--accent);color:#fff;border:1px solid var(--accent);font-weight:600;}
 .examresume .resume-discard{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line);}
 .diff{
-  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.03em;
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.03em;
   padding:.1rem .5rem;border-radius:999px;
 }
 .diff-low{background:var(--diff-low-soft);color:var(--diff-low);}
 .diff-mid{background:var(--accent-2-soft);color:var(--accent-2);}
 .diff-high{background:var(--danger-soft);color:var(--danger);}
-.qtext{margin:.15rem 0 .65rem;font-size:.96rem;}
+.qtext{margin:.15rem 0 .65rem;font-size:.92rem;}
 
 .choices{display:grid;gap:.4rem;margin:0;}
 .choice{
-  display:block;width:100%;text-align:left;font:inherit;font-size:.9rem;
+  display:block;width:100%;text-align:left;font:inherit;font-size:.92rem;
   color:var(--ink);background:var(--paper);border:1px solid var(--line);
   border-radius:6px;padding:.45rem .7rem;cursor:pointer;
 }
@@ -477,20 +509,20 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .choice.correct{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-strong);font-weight:600;}
 .choice.wrong{background:var(--danger-soft);border-color:var(--danger);color:var(--danger);font-weight:600;}
 
-.feedback{margin:.6rem 0 0;font-size:.85rem;padding:.5rem .7rem;border-radius:6px;line-height:1.5;}
+.feedback{margin:.6rem 0 0;font-size:.86rem;padding:.5rem .7rem;border-radius:6px;line-height:1.5;}
 .feedback.ok{background:var(--accent-soft);color:var(--accent-strong);}
 .feedback.no{background:var(--danger-soft);color:var(--danger);}
 
-.answer-pointer{font-size:.85rem;color:var(--ink-soft);margin-top:1rem;}
+.answer-pointer{font-size:.86rem;color:var(--ink-soft);margin-top:1rem;}
 .answer-pointer a{font-weight:600;}
 
 /* ---------- exam mode ---------- */
 .examsetup{
-  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;
   padding:1.1rem 1.2rem 1.3rem;box-shadow:var(--shadow);
 }
 .examnuminput{
-  width:4.2em;font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.9rem;
+  width:4.2em;font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.92rem;
   padding:.25rem .4rem;border:1px solid var(--line);border-radius:6px;
   background:var(--paper);color:var(--ink);text-align:right;
 }
@@ -517,13 +549,13 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .examsetup-details summary::before{content:'▶';font-size:.7rem;color:var(--ink-soft);transition:transform .15s ease;}
 .examsetup-details[open] summary::before{transform:rotate(90deg);}
 .examsetup-details summary:hover{border-color:var(--accent);}
-.examsetup-details summary .hint{font-size:.76rem;font-weight:400;color:var(--ink-soft);}
+.examsetup-details summary .hint{font-size:.74rem;font-weight:400;color:var(--ink-soft);}
 .examsetup-details[open] summary{border-radius:8px 8px 0 0;}
 .examsetup-body{
   border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:.9rem 1rem 1rem;
 }
 .examstart-btn{
-  font:inherit;font-size:.95rem;font-weight:600;background:var(--accent);color:#fff;
+  font:inherit;font-size:.92rem;font-weight:600;background:var(--accent);color:#fff;
   border:none;border-radius:8px;padding:.65rem 1.4rem;cursor:pointer;
 }
 .examstart-btn:hover{background:var(--accent-strong);}
@@ -533,11 +565,11 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   padding:.6rem .9rem;margin-bottom:.9rem;box-shadow:var(--shadow);
 }
 .examtimer-code{
-  font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;letter-spacing:.03em;
+  font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-weight:700;letter-spacing:.03em;
   color:var(--ink);background:var(--surface);border:1px solid var(--line);
   padding:.15rem .55rem;border-radius:6px;
 }
-.examtimer-label{font-size:.78rem;color:var(--ink-soft);}
+.examtimer-label{font-size:.8rem;color:var(--ink-soft);}
 .examtimer-clock{
   font-family:"IBM Plex Mono",monospace;font-size:1.15rem;font-weight:700;color:var(--accent-strong);
   padding:.1rem .5rem;border-radius:6px;background:var(--accent-soft);
@@ -546,7 +578,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .examtimer-clock.critical{color:var(--danger);background:var(--danger-soft);}
 .examtimer-count{font-size:.8rem;color:var(--ink-soft);}
 .examfinish-btn{
-  margin-left:auto;font:inherit;font-size:.82rem;background:var(--surface);
+  margin-left:auto;font:inherit;font-size:.8rem;background:var(--surface);
   border:1px solid var(--line);border-radius:6px;padding:.4rem .8rem;cursor:pointer;color:var(--ink);
 }
 .examfinish-btn:hover{border-color:var(--accent);}
@@ -554,26 +586,26 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:70;
   max-width:min(90vw,420px);text-align:center;
   background:var(--accent-2-soft);border:1px solid var(--accent-2);color:var(--accent-2);
-  border-radius:8px;padding:.6rem .9rem;font-size:.88rem;font-weight:600;box-shadow:var(--shadow);
+  border-radius:8px;padding:.6rem .9rem;font-size:.86rem;font-weight:600;box-shadow:var(--shadow);
 }
 .examresults{
-  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;
   padding:1.1rem 1.2rem 1.3rem;box-shadow:var(--shadow);
 }
-.examresults .bigscore{font-size:2rem;font-weight:700;color:var(--accent-strong);font-family:"IBM Plex Mono",monospace;}
+.examresults .bigscore{font-size:1.15rem;font-weight:700;color:var(--accent-strong);font-family:"IBM Plex Mono",monospace;}
 .examresults .weak{
   margin-top:.8rem;padding:.7rem .9rem;background:var(--danger-soft);color:var(--danger);
-  border-radius:8px;font-size:.9rem;
+  border-radius:8px;font-size:.92rem;
 }
 .examresults .examresult-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem;}
 .examresults .retry-btn{
-  font:inherit;font-size:.88rem;background:var(--surface-2);
+  font:inherit;font-size:.86rem;background:var(--surface-2);
   border:1px solid var(--line);border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;color:var(--ink);
 }
 .examresults .retry-btn:hover{border-color:var(--accent);}
 .qcard.exam-reveal .choice{cursor:default;}
 .examjump-btn{
-  display:inline-block;margin-top:.6rem;font:inherit;font-size:.76rem;
+  display:inline-block;margin-top:.6rem;font:inherit;font-size:.74rem;
   background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
   padding:.3rem .7rem;cursor:pointer;color:var(--accent-strong);
 }
@@ -584,7 +616,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   scroll-margin-top:1.2rem;transition:background .4s ease;
 }
 .concept-highlight-box{
-  scroll-margin-top:1.2rem;border-radius:12px;transition:background .35s ease,box-shadow .35s ease,padding .35s ease;
+  scroll-margin-top:1.2rem;border-radius:8px;transition:background .35s ease,box-shadow .35s ease,padding .35s ease;
 }
 .concept-highlight-box.hl-active{
   background:var(--highlight-bg);box-shadow:0 0 0 2px var(--highlight-border) inset;
@@ -593,13 +625,13 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .concept-highlight-box.hl-active h3{margin-top:0;}
 .examreturn-fab{
   position:fixed;right:1.2rem;bottom:1.2rem;z-index:50;
-  font:inherit;font-size:.85rem;font-weight:600;
+  font:inherit;font-size:.86rem;font-weight:600;
   background:var(--accent);color:#fff;border:none;border-radius:999px;
   padding:.7rem 1.2rem;cursor:pointer;box-shadow:var(--shadow);
 }
 .examreturn-fab:hover{background:var(--accent-strong);}
 .examq-num{
-  font-family:"IBM Plex Mono",monospace;font-size:.76rem;font-weight:700;
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;font-weight:700;
   color:var(--accent-2);margin:0 0 .3rem;
 }
 
@@ -609,11 +641,11 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   display:flex;align-items:center;justify-content:center;padding:1.2rem;
 }
 .exammodal{
-  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);border:1px solid var(--line);border-radius:8px;
   max-width:480px;width:100%;max-height:80vh;overflow-y:auto;
   padding:1.3rem 1.4rem;box-shadow:var(--shadow);
 }
-.exammodal h3{margin:0 0 .6rem;font-size:1.1rem;}
+.exammodal h3{margin:0 0 .6rem;font-size:1.15rem;}
 .exammodal .unanswered-wrap{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 1rem;}
 .exammodal .unanswered-chip{
   font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.8rem;
@@ -624,7 +656,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .exammodal .allanswered{color:var(--accent-strong);font-size:.92rem;margin:.7rem 0 1rem;}
 .exammodal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:.5rem;}
 .exammodal-actions button{
-  font:inherit;font-size:.88rem;border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;
+  font:inherit;font-size:.86rem;border-radius:8px;padding:.55rem 1.1rem;cursor:pointer;
 }
 .exammodal-cancel{background:var(--surface-2);border:1px solid var(--line);color:var(--ink);}
 .exammodal-confirm{background:var(--danger);border:none;color:#fff;font-weight:600;}
@@ -633,7 +665,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 /* ---------- curriculum coverage map ---------- */
 .curmap-major{
   margin:1.1rem 0 .5rem;padding:.5rem .8rem;background:var(--surface-2);
-  border-radius:8px;font-weight:700;font-size:.94rem;
+  border-radius:8px;font-weight:700;font-size:.92rem;
 }
 .curmap-sub{margin:.7rem 0 .3rem;font-size:.86rem;font-weight:600;color:var(--ink-soft);}
 /* `.curmap-name` holds an 11em column so the "→ 위치" text lines up. At a larger font scale that
@@ -662,12 +694,12 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 }
 .histcard-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.5rem;}
 .histcard-code{
-  font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:700;color:var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:700;color:var(--ink);
   background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:.1rem .5rem;
 }
 .histcard-date{font-size:.8rem;color:var(--ink-soft);}
-.histcard-score{font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--accent-strong);font-size:1.05rem;}
-.histcard-pct{font-family:"IBM Plex Mono",monospace;color:var(--ink-soft);font-size:.85rem;}
+.histcard-score{font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--accent-strong);font-size:1rem;}
+.histcard-pct{font-family:"IBM Plex Mono",monospace;color:var(--ink-soft);font-size:.86rem;}
 .histcard-retry{
   margin-left:auto;font:inherit;font-size:.74rem;background:transparent;border:1px solid var(--line);
   border-radius:6px;padding:.2rem .6rem;cursor:pointer;color:var(--accent-strong);
@@ -678,7 +710,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   border-radius:6px;padding:.2rem .6rem;cursor:pointer;color:var(--danger);
 }
 .histcard-del:hover{background:var(--danger-soft);border-color:var(--danger);}
-.histcard-parts{display:flex;flex-wrap:wrap;gap:.4rem .8rem;font-size:.82rem;color:var(--ink-soft);}
+.histcard-parts{display:flex;flex-wrap:wrap;gap:.4rem .8rem;font-size:.8rem;color:var(--ink-soft);}
 .histcard-parts b{color:var(--ink);}
 
 .roadmap{border-collapse:collapse;width:100%;}
@@ -687,9 +719,9 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .answer-block{margin-bottom:2.1rem;}
 .answer-block h4{
   font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em;
-  font-size:.82rem;color:var(--accent-2);border-bottom:1px solid var(--line);padding-bottom:.4rem;
+  font-size:.8rem;color:var(--accent-2);border-bottom:1px solid var(--line);padding-bottom:.4rem;
 }
-.answer-row{display:flex;gap:.7rem;padding:.4rem 0;border-bottom:1px solid var(--line);font-size:.9rem;}
+.answer-row{display:flex;gap:.7rem;padding:.4rem 0;border-bottom:1px solid var(--line);font-size:.92rem;}
 .answer-row:last-child{border-bottom:none;}
 .answer-row .aid{font-family:"IBM Plex Mono",monospace;color:var(--ink-soft);flex-shrink:0;width:3.2rem;}
 .answer-row .apick{font-weight:700;color:var(--accent-strong);flex-shrink:0;width:2.2rem;}
@@ -698,13 +730,13 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 .srclist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;}
 .srclist li{
   background:var(--surface);border:1px solid var(--line);border-radius:8px;
-  padding:.7rem .9rem;box-shadow:var(--shadow);font-size:.9rem;
+  padding:.7rem .9rem;box-shadow:var(--shadow);font-size:.92rem;
 }
 .srclist .stag{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--accent-2);text-transform:uppercase;letter-spacing:.05em;}
 .srclist a{word-break:break-all;}
 
 .disclaimer{
-  margin-top:2rem;font-size:.85rem;color:var(--ink-soft);
+  margin-top:2rem;font-size:.86rem;color:var(--ink-soft);
   background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;
 }
 
@@ -745,6 +777,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <div class="navrow"><input type="checkbox" data-progress="part6"><button class="nav-item" data-target="part6">Part 6 · 실전 모의고사</button></div>
 
       <div class="nav-label">참고자료</div>
+      <div class="navrow"><button class="nav-item" data-target="review">틀린 문제 복습<span class="navbadge" id="reviewBadge" hidden></span></button></div>
       <div class="navrow"><button class="nav-item" data-target="search">전체 검색</button></div>
       <div class="navrow"><button class="nav-item" data-target="glossary">용어 정리</button></div>
 
@@ -2384,6 +2417,32 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <div id="examResults" class="examresults" hidden></div>
     </section>
 
+    <!-- ================= REVIEW ================= -->
+    <section class="page" id="review" hidden>
+      <header class="page-head">
+        <p class="eyebrow">Spaced Review</p>
+        <h2>틀린 문제 복습</h2>
+        <p class="lede">틀린 개념을 <strong>하루 뒤 → 3일 → 7일 → 16일 → 35일</strong> 간격으로 다시 보여줍니다. 맞히면 간격이 넓어지고, 또 틀리면 다시 하루 뒤로 돌아옵니다. 다섯 단계를 모두 통과한 개념은 목록에서 빠집니다.</p>
+      </header>
+
+      <div class="reviewsummary" id="reviewSummary"></div>
+      <div id="reviewEmptyState" class="reviewfilter-empty" hidden>
+        아직 복습할 문제가 없습니다. 연습문제나 모의고사에서 틀린 문제가 생기면 여기에 쌓입니다.
+      </div>
+      <div id="reviewSessionArea"></div>
+
+      <h3 style="margin-top:1.6rem;">예정된 복습</h3>
+      <div id="reviewScheduleList" class="glossary-hitlist"></div>
+      <p class="concept-note" id="reviewScheduleEmpty" hidden>예정된 항목이 없습니다.</p>
+
+      <div class="disclaimer" style="margin-top:1.4rem;">
+        <strong>왜 이런 방식인가</strong> — 학습과학에서 효과가 가장 확실하게 검증된 두 가지가 <strong>연습 시험(직접 풀어보기)</strong>과 <strong>분산 학습(간격을 두고 반복)</strong>입니다.
+        Dunlosky 등(2013)이 열 가지 학습법을 평가해 "높은 효용" 등급을 준 것이 이 둘뿐이었고, Hattie &amp; Donoghue(2021)가 242개 연구·169,179명 규모로 재검증해 같은 결론을 얻었습니다.
+        이 노트는 연습 시험은 이미 갖추고 있었고, 이 페이지가 나머지 절반인 분산 학습을 담당합니다.
+        <br>기록은 이 기기 안에만 저장됩니다.
+      </div>
+    </section>
+
     <!-- ================= SITE SEARCH ================= -->
     <section class="page" id="search" hidden>
       <header class="page-head">
@@ -2597,7 +2656,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v95 (2026-09-21)</span>
+              <span class="mono" id="noteVersionLabel">v96 (2026-09-21)</span>
               <button type="button" id="updateCheckBtn" class="updatebtn">🔄 업데이트 확인</button>
               <span id="updateStatus" class="updatestatus" role="status" aria-live="polite"></span>
               <br>앱을 껐다 켜도 자동으로 최신 내용을 받아오지만, 지금 바로 확인하고 싶을 때 이 버튼을 누르세요.
@@ -2672,6 +2731,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-target]'));
   var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
 
+  var reviewApi = {};
   var contentEl = document.querySelector('.content');
   /* Under 800px the sidebar stacks ABOVE the content, so scrolling to the document top after a
      page switch lands on the nav list again and the new page looks like nothing happened —
@@ -2691,6 +2751,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       }
     });
     try{ localStorage.setItem('ecn-page', id); }catch(e){}
+    if(id === 'review' && reviewApi.refresh) reviewApi.refresh();
     if(fromNav === false){ window.scrollTo(0,0); } else { scrollToPageTop(); }
   }
 
@@ -3814,15 +3875,18 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
           if(picked === String(q.correct+1)){
             b.classList.add('correct');
             tracker.correct++;
+            reviewMarkCorrect(conceptId);
             feedbackEl.innerHTML = renderMath('정답입니다. ' + q.explain);
             feedbackEl.className = 'feedback ok';
           } else {
             b.classList.add('wrong');
             btns.forEach(function(x){ if(x.getAttribute('data-choice') === String(q.correct+1)) x.classList.add('correct'); });
+            reviewMarkWrong(conceptId);
             feedbackEl.innerHTML = renderMath('오답입니다 (정답 ' + choiceLabel(q.correct+1) + '). ' + q.explain);
             feedbackEl.className = 'feedback no';
           }
           feedbackEl.hidden = false;
+          refreshReviewBadge();
           refresh();
         });
         choicesEl.appendChild(b);
@@ -3983,6 +4047,158 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     entry.el.classList.add('search-flash');
     setTimeout(function(){ entry.el.classList.remove('search-flash'); entry.el.style.animationDuration = ''; }, secs * 1000 + 100);
   }
+  /* ---------- 간격 복습 (spaced review) ----------
+     Practice testing is already everywhere in this note; spacing is the half that was missing.
+     Dunlosky et al. (2013) and Hattie & Donoghue (2021) both rate distributed practice and
+     practice testing as the only high-utility study techniques, and they compound. So a concept
+     answered wrong comes back tomorrow, and each time it is answered right the gap widens. */
+  var REVIEW_KEY = 'ecn-review';
+  var REVIEW_STEPS = [1, 3, 7, 16, 35];   // days until the next showing, by stage
+  var DAY_MS = 86400000;
+
+  function loadReview(){
+    try{ var raw = localStorage.getItem(REVIEW_KEY); return raw ? JSON.parse(raw) : {}; }
+    catch(e){ return {}; }
+  }
+  function saveReview(data){
+    try{ localStorage.setItem(REVIEW_KEY, JSON.stringify(data)); }catch(e){}
+  }
+  function startOfTomorrow(days){
+    var d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d.getTime() + days * DAY_MS;
+  }
+  /* Wrong answer: back to the shortest interval. Right answer: widen it, and retire the concept
+     once it has survived the longest step. */
+  function reviewMarkWrong(conceptId){
+    if(!QUESTION_BANK[conceptId]) return;
+    var data = loadReview();
+    var item = data[conceptId] || {};
+    item.stage = 0;
+    item.due = startOfTomorrow(REVIEW_STEPS[0]);
+    item.misses = (item.misses || 0) + 1;
+    item.updated = Date.now();
+    data[conceptId] = item;
+    saveReview(data);
+  }
+  function reviewMarkCorrect(conceptId){
+    var data = loadReview();
+    var item = data[conceptId];
+    if(!item) return;                 // only track things the user has actually got wrong before
+    var stage = (item.stage || 0) + 1;
+    if(stage >= REVIEW_STEPS.length){
+      delete data[conceptId];         // learned — stop scheduling it
+    } else {
+      item.stage = stage;
+      item.due = startOfTomorrow(REVIEW_STEPS[stage]);
+      item.updated = Date.now();
+      data[conceptId] = item;
+    }
+    saveReview(data);
+  }
+  function reviewDueIds(){
+    var data = loadReview(), now = Date.now(), out = [];
+    Object.keys(data).forEach(function(id){
+      if(!QUESTION_BANK[id]) return;
+      if((data[id].due || 0) <= now) out.push(id);
+    });
+    return out;
+  }
+  function reviewUpcoming(){
+    var data = loadReview(), now = Date.now(), n = 0;
+    Object.keys(data).forEach(function(id){
+      if(QUESTION_BANK[id] && (data[id].due || 0) > now) n++;
+    });
+    return n;
+  }
+  function refreshReviewBadge(){
+    var badge = document.getElementById('reviewBadge');
+    if(!badge) return;
+    var n = reviewDueIds().length;
+    badge.textContent = n ? String(n) : '';
+    badge.hidden = !n;
+  }
+
+  function setupReviewPage(){
+    var summaryEl = document.getElementById('reviewSummary');
+    var emptyEl = document.getElementById('reviewEmptyState');
+    var sessionEl = document.getElementById('reviewSessionArea');
+    var schedEl = document.getElementById('reviewScheduleList');
+    var schedEmptyEl = document.getElementById('reviewScheduleEmpty');
+    if(!summaryEl || !sessionEl) return;
+
+    function whenText(due){
+      var days = Math.ceil((due - Date.now()) / DAY_MS);
+      if(days <= 0) return '오늘';
+      if(days === 1) return '내일';
+      return days + '일 뒤';
+    }
+    function renderSchedule(){
+      var data = loadReview(), now = Date.now();
+      var rows = Object.keys(data)
+        .filter(function(id){ return QUESTION_BANK[id] && (data[id].due || 0) > now; })
+        .sort(function(a, b){ return data[a].due - data[b].due; });
+      schedEl.innerHTML = rows.map(function(id){
+        var it = data[id];
+        return '<div class="rvsched">' +
+          '<span class="rvtitle">' + (QUESTION_BANK[id].title || id) + '</span>' +
+          '<span class="rvstage">' + ((it.stage || 0) + 1) + '단계</span>' +
+          '<span class="rvwhen">' + whenText(it.due) + '</span>' +
+        '</div>';
+      }).join('');
+      schedEmptyEl.hidden = rows.length > 0;
+    }
+    function renderSummary(){
+      var due = reviewDueIds();
+      var later = reviewUpcoming();
+      summaryEl.innerHTML =
+        '<span><span class="rvnum">' + due.length + '</span> <span class="rvlabel">개 복습할 차례</span></span>' +
+        '<span class="rvlabel">· 예정 ' + later + '개</span>' +
+        '<button type="button" class="reviewstart" id="reviewStartBtn"' + (due.length ? '' : ' disabled') + '>▶ 복습 시작</button>';
+      emptyEl.hidden = (due.length + later) > 0;
+      var startBtn = document.getElementById('reviewStartBtn');
+      if(startBtn) startBtn.addEventListener('click', function(){ startSession(due); });
+      renderSchedule();
+      refreshReviewBadge();
+    }
+    /* Runs the due concepts one at a time, reusing the same card builder the Parts use so the
+       question, the 이론 보기 jump and the re-roll button all behave identically. */
+    function startSession(ids){
+      var queue = RNG.shuffle(ids.slice());
+      var total = queue.length, index = 0;
+      var tracker = { answered: 0, correct: 0 };
+      function next(){
+        sessionEl.innerHTML = '';
+        if(index >= total){
+          sessionEl.innerHTML = '<div class="rvdone">복습 완료 — ' + total + '개 중 ' +
+            tracker.correct + '개 정답. 맞힌 개념은 다음 단계로 넘어가 더 나중에 다시 나옵니다.</div>';
+          renderSummary();
+          return;
+        }
+        var conceptId = queue[index];
+        var progress = document.createElement('p');
+        progress.className = 'rvprogress';
+        progress.textContent = (index + 1) + ' / ' + total + '  ·  ' + (QUESTION_BANK[conceptId].title || conceptId);
+        sessionEl.appendChild(progress);
+        var list = document.createElement('ol');
+        list.className = 'qlist';
+        var answeredBefore = tracker.answered;
+        var card = buildConceptCard(conceptId, tracker, function(){
+          if(tracker.answered > answeredBefore){
+            answeredBefore = Infinity;      // only advance once per card
+            setTimeout(function(){ index++; next(); }, 1600);
+          }
+        });
+        list.appendChild(card);
+        sessionEl.appendChild(list);
+        sessionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      next();
+    }
+    renderSummary();
+    reviewApi.refresh = renderSummary;
+  }
+
   /* ---------- 회로도 확대해서 보기 ---------- */
   function setupDiagramZoom(){
     var figs = Array.prototype.slice.call(document.querySelectorAll('.circuit-fig'));
@@ -5086,6 +5302,8 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         var btns = Array.prototype.slice.call(m.li.querySelectorAll('.choice'));
         var correctChoice = m.q.correct + 1;
         m.correct = (m.answeredIndex === correctChoice);
+        if(m.correct) reviewMarkCorrect(m.conceptId);
+        else reviewMarkWrong(m.conceptId);
         btns.forEach(function(x){
           x.disabled = true;
           x.classList.remove('selected');
@@ -5221,6 +5439,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   setupGlossary();
   setupSiteSearch();
   setupDiagramZoom();
+  setupReviewPage();
 })();
 </script>
 <script>
