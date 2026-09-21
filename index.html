@@ -367,7 +367,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 }
 .gcard-head{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.3rem;}
 .gcard-term{font-weight:700;color:var(--ink);font-size:.95rem;}
-.gcard-symbol{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent-strong);background:var(--accent-soft);border-radius:5px;padding:.1rem .45rem;}
+.gcard-symbol{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent-strong);background:var(--accent-soft);border-radius:5px;padding:.1rem .45rem;max-width:100%;overflow-wrap:break-word;}
 .gcard-part{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-soft);background:var(--surface-2);border-radius:999px;padding:.15rem .55rem;white-space:nowrap;}
 .gcard-def{font-size:.85rem;color:var(--ink-soft);line-height:1.5;margin:0;}
 .glossary-group-title{font-size:.92rem;margin:1.1rem 0 .5rem;color:var(--accent-strong);}
@@ -580,14 +580,17 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
   border-radius:8px;font-weight:700;font-size:.94rem;
 }
 .curmap-sub{margin:.7rem 0 .3rem;font-size:.86rem;font-weight:600;color:var(--ink-soft);}
+/* `.curmap-name` holds an 11em column so the "→ 위치" text lines up. At a larger font scale that
+   column plus the location text no longer fits a phone, so the row must be allowed to wrap
+   instead of pushing its second half off the screen. */
 .curmap-leaf{
-  display:flex;align-items:baseline;gap:.5rem;padding:.28rem .3rem;
+  display:flex;align-items:baseline;gap:.5rem;padding:.28rem .3rem;flex-wrap:wrap;
   border-bottom:1px dashed var(--line);font-size:.86rem;
 }
 .curmap-leaf:last-child{border-bottom:none;}
 .curmap-check{color:var(--accent-strong);flex-shrink:0;}
-.curmap-name{flex-shrink:0;min-width:11em;}
-.curmap-where{color:var(--ink-soft);}
+.curmap-name{flex-shrink:0;min-width:11em;max-width:100%;overflow-wrap:break-word;}
+.curmap-where{color:var(--ink-soft);min-width:0;overflow-wrap:break-word;}
 
 /* ---------- exam history ---------- */
 .histtoolbar{display:flex;justify-content:flex-end;margin-bottom:.8rem;}
@@ -2538,7 +2541,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v90 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
+              <span class="mono" id="noteVersionLabel">v91 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
             </td></tr>
           </tbody>
         </table>
