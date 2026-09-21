@@ -2458,7 +2458,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               <span class="mono" id="fontScaleLabel" style="margin-left:.5rem;">100%</span> — 수식·분수를 포함한 페이지 전체 글자 크기를 조절합니다
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v86 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
+              <span class="mono" id="noteVersionLabel">v87 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
             </td></tr>
           </tbody>
         </table>
@@ -3288,29 +3288,51 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     if(v >= 1000) return (v/1000) + 'kΩ';
     return v + 'Ω';
   }
+  /* Different resistance values can format to the same string (0Ω twice, or 950/10 and 95 both
+     reading "95kΩ"), and mc() does not dedupe its options — so pick wrong answers from a list of
+     candidates, keeping only those whose displayed text is still unused. */
+  function distinctOhmWrongs(correctLabel, candidates, suffix){
+    var used = {}, out = [];
+    used[correctLabel] = true;
+    for(var i = 0; i < candidates.length && out.length < 3; i++){
+      if(!isFinite(candidates[i]) || candidates[i] <= 0) continue;
+      var label = fmtOhm(candidates[i]) + suffix;
+      if(used[label]) continue;
+      used[label] = true;
+      out.push(label);
+    }
+    return out;
+  }
   function genP5Color(diff){
     var branch = diff === '중' ? 'band4' : (diff === '상' ? 'band5' : RNG.pick(['band4','band5']));
+    /* A real resistor's first band is never black — a leading zero would also make the value 0. */
+    var firstBand = COLOR_TABLE.filter(function(c){ return c.digit > 0; });
     if(branch === 'band4'){
-      var c1 = RNG.pick(COLOR_TABLE), c2 = RNG.pick(COLOR_TABLE), c3 = RNG.pick(COLOR_TABLE.slice(0,5));
+      var c1 = RNG.pick(firstBand), c2 = RNG.pick(COLOR_TABLE), c3 = RNG.pick(COLOR_TABLE.slice(0,5));
       var value = (c1.digit*10 + c2.digit) * c3.mult;
       var tol = RNG.pick([['금','±5%'],['은','±10%']]);
-      var wrongB = value*10, wrongC = value/10 || 1;
+      var otherTol = (tol[1] === '±5%' ? '±10%' : '±5%');
+      var wrongs4 = distinctOhmWrongs(fmtOhm(value) + ' ' + tol[1],
+        [value*10, value/10, value*100, value/100, (c1.digit + c2.digit*10) * c3.mult], ' ' + tol[1]);
+      wrongs4[2] = fmtOhm(value) + ' ' + otherTol;
       return mc(
         '저항 색띠가 ' + c1.name + '-' + c2.name + '-' + c3.name + '-' + tol[0] + ' 순서(4색띠)일 때 저항값과 허용오차는?',
         fmtOhm(value) + ' ' + tol[1],
-        [fmtOhm(wrongB) + ' ' + tol[1], fmtOhm(value) + ' ' + (tol[1] === '±5%' ? '±10%' : '±5%'), fmtOhm(wrongC) + ' ' + tol[1]],
+        wrongs4,
         c1.name + '(' + c1.digit + ')-' + c2.name + '(' + c2.digit + ')-' + c3.name + '(×' + c3.mult + ') = ' + value + 'Ω, ' + tol[0] + '=' + tol[1],
         '중'
       );
     }
     /* 상: 5색띠(정밀저항) — 유효숫자 3자리를 먼저 조합한 뒤 승수를 곱해야 하는 문제 */
-    var d1 = RNG.pick(COLOR_TABLE), d2 = RNG.pick(COLOR_TABLE), d3 = RNG.pick(COLOR_TABLE), m = RNG.pick(COLOR_TABLE.slice(0,4));
+    var d1 = RNG.pick(firstBand), d2 = RNG.pick(COLOR_TABLE), d3 = RNG.pick(COLOR_TABLE), m = RNG.pick(COLOR_TABLE.slice(0,4));
     var digits3 = d1.digit*100 + d2.digit*10 + d3.digit;
     var value5 = digits3 * m.mult;
+    var wrongs5 = distinctOhmWrongs(fmtOhm(value5),
+      [value5*10, (d1.digit*10+d2.digit)*m.mult, value5/10, value5*100, value5/100, digits3], '');
     return mc(
       '5색띠 정밀저항의 색이 ' + d1.name + '-' + d2.name + '-' + d3.name + '-' + m.name + '-갈(오차띠) 순서다. 저항값은?',
       fmtOhm(value5),
-      [fmtOhm(value5*10), fmtOhm((d1.digit*10+d2.digit)*m.mult), fmtOhm(value5/10||1)],
+      wrongs5,
       '5색띠는 앞 3자리가 유효숫자: ' + d1.digit + '' + d2.digit + '' + d3.digit + '=' + digits3 + ', 승수 ×' + m.mult + ' → ' + digits3 + '×' + m.mult + '=' + value5 + 'Ω (4색띠와 달리 숫자 3자리를 먼저 조합해야 함)',
       '상'
     );
@@ -4400,27 +4422,31 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     }
 
     function buildDistribution(total){
-      /* A part can never be asked for more questions than it has distinct concepts, otherwise the
-         pool has to reuse one and the same question comes back twice in one exam (only the numbers
-         and answer order differ). Part 3~5 have 16 concepts each, so the old flat cap of 18 could
-         force exactly that. */
-      var caps = {};
-      PARTS.forEach(function(p){ caps[p] = Math.min(18, conceptsForPart(p).length); });
-      var base = Math.floor(total / PARTS.length);
-      var counts = {};
-      PARTS.forEach(function(p){ counts[p] = Math.min(base, caps[p]); });
-      var assigned = PARTS.reduce(function(sum, p){ return sum + counts[p]; }, 0);
+      /* The bank has fewer concepts (47) than an exam has questions (60), so some concept must
+         repeat — capping each part at its concept count would silently produce a short exam.
+         Instead, hand out the questions in proportion to how many concepts each part actually has,
+         so the unavoidable repeats are spread evenly rather than piling onto the smallest part.
+         `pickDistinctCycled` then exhausts a part's concepts before reusing any, and
+         `buildExamCard` guarantees a reused concept still yields a different question. */
+      var avail = {}, availTotal = 0;
+      PARTS.forEach(function(p){ avail[p] = conceptsForPart(p).length; availTotal += avail[p]; });
+      var counts = {}, assigned = 0;
+      PARTS.forEach(function(p){
+        counts[p] = Math.max(6, Math.floor(total * avail[p] / availTotal));
+        assigned += counts[p];
+      });
+      var order = PARTS.slice();
       var guard = 0;
-      while(assigned < total && guard++ < 500){
-        for(var i = 0; i < PARTS.length && assigned < total; i++){
-          if(counts[PARTS[i]] < caps[PARTS[i]]){ counts[PARTS[i]]++; assigned++; }
-        }
+      while(assigned !== total && guard++ < 500){
+        var p2 = order[guard % order.length];
+        if(assigned < total){ counts[p2]++; assigned++; }
+        else if(counts[p2] > 6){ counts[p2]--; assigned--; }
       }
       var shifts = RNG.int(4, 8);
       for(var s = 0; s < shifts; s++){
         var a = RNG.pick(PARTS), b = RNG.pick(PARTS);
         if(a === b) continue;
-        if(counts[a] > 6 && counts[b] < caps[b]){ counts[a]--; counts[b]++; }
+        if(counts[a] > 6 && counts[b] < 18){ counts[a]--; counts[b]++; }
       }
       return counts;
     }
@@ -4480,9 +4506,17 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       }
     }
 
+    var usedQuestionTexts = {};
     function buildExamCard(conceptId, num){
       var entry = QUESTION_BANK[conceptId];
       var q = entry.gen(pickExamDiff());
+      /* 47 concepts have to cover 60 questions, so a concept does get reused — but the user must
+         never see the same question twice. Every concept can produce many distinct questions
+         (measured: 2,866 across the bank), so re-roll until this exact wording is new. */
+      for(var attempt = 0; attempt < 40 && usedQuestionTexts[q.text]; attempt++){
+        q = entry.gen(pickExamDiff());
+      }
+      usedQuestionTexts[q.text] = true;
       var li = document.createElement('li');
       li.className = 'qcard';
       li.id = 'examq-' + num;
@@ -4523,6 +4557,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
 
       list.innerHTML = '';
       questionMeta = [];
+      usedQuestionTexts = {};
       resetReviewFilter();
       /* The review filter belongs to the results screen only — if a previous exam's results were
          left open it would otherwise stay on screen during the new exam, where its 맞은/틀린 filters
