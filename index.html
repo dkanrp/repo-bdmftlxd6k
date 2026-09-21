@@ -207,15 +207,32 @@ strong{font-weight:600;}
 }
 .example ol{margin:.3rem 0 0;padding-left:1.2rem;}
 .example li{margin:.2rem 0;}
+/* A worked line like 1×2⁷+0×2⁶+… has no spaces, so the browser treats it as one unbreakable word
+   and it runs straight out of the box on a narrow screen. Allow these to wrap mid-expression. */
+.example, .example p, p.mono, td.mono, .qtext, .feedback{overflow-wrap:break-word;word-break:break-word;}
+.fontscale-row{display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.35rem;}
+.fontscale-row input[type=range]{width:150px;vertical-align:middle;}
+.fontscale-num{display:inline-flex;align-items:center;gap:.25rem;}
+.fontscale-num input[type=number]{width:4.2rem;text-align:center;}
+.fontscale-step{
+  font:inherit;font-size:1rem;line-height:1;cursor:pointer;
+  min-width:2rem;min-height:2rem;padding:.2rem .5rem;
+  border:1px solid var(--line);border-radius:6px;
+  background:var(--surface);color:var(--ink);
+}
+.fontscale-step:hover{border-color:var(--accent);color:var(--accent-strong);}
+.fontscale-step:active{background:var(--accent-soft);}
 .circuit-fig{
   display:flex;align-items:center;gap:1.1rem;margin:.7rem 0 1.1rem;flex-wrap:wrap;
   background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;
 }
-.circuit-fig svg{flex-shrink:0;}
+/* These diagrams carry fixed pixel width/height attributes (up to 400px). On a phone the content
+   column is narrower than that, so without allowing them to shrink they burst out of their box and
+   the right-hand side of the circuit is simply cut off. */
+.circuit-fig svg{flex-shrink:1;max-width:100%;height:auto;}
 .circuit-fig .cap{font-size:.85rem;color:var(--ink-soft);max-width:32ch;}
 .circuit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.9rem;margin:.7rem 0 1.1rem;}
 .circuit-grid .circuit-fig{margin:0;height:100%;}
-.circuit-grid .circuit-fig svg{flex-shrink:1;max-width:100%;height:auto;}
 
 .tablewrap{overflow-x:auto;margin:.8rem 0 1.2rem;border:1px solid var(--line);border-radius:8px;}
 table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:420px;}
@@ -2504,11 +2521,18 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               </div>
             </td></tr>
             <tr><td>글자 크기</td><td>
-              <input type="range" id="fontScaleInput" min="85" max="140" step="5" value="100" style="vertical-align:middle;width:160px;">
-              <span class="mono" id="fontScaleLabel" style="margin-left:.5rem;">100%</span> — 수식·분수를 포함한 페이지 전체 글자 크기를 조절합니다
+              <span class="fontscale-row">
+                <input type="range" id="fontScaleInput" min="85" max="140" step="5" value="100">
+                <span class="fontscale-num">
+                  <button type="button" class="fontscale-step" id="fontScaleDown" aria-label="글자 크기 줄이기">−</button>
+                  <input type="number" id="fontScaleNumber" class="examnuminput mono" min="85" max="140" step="5" value="100" aria-label="글자 크기 퍼센트"><span class="mono">%</span>
+                  <button type="button" class="fontscale-step" id="fontScaleUp" aria-label="글자 크기 키우기">+</button>
+                </span>
+              </span>
+              숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v88 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
+              <span class="mono" id="noteVersionLabel">v89 (2026-09-21)</span> — 휴대폰 앱이 최신 내용을 받아왔는지 확인할 때 이 번호를 보면 됩니다
             </td></tr>
           </tbody>
         </table>
@@ -2637,25 +2661,56 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     });
 
     var fontInput = document.getElementById('fontScaleInput');
-    var fontLabel = document.getElementById('fontScaleLabel');
-    function applyFontScale(pct){
+    var fontNumber = document.getElementById('fontScaleNumber');
+    var FONT_MIN = 85, FONT_MAX = 140;
+    function clampFont(pct){
+      if(isNaN(pct)) pct = 100;
+      return Math.max(FONT_MIN, Math.min(FONT_MAX, pct));
+    }
+    /* `echo` is the control the user is currently typing in — leave its value alone so the caret
+       does not jump while they type, and update the other one. */
+    function applyFontScale(pct, echo){
+      pct = clampFont(pct);
       document.documentElement.style.fontSize = pct + '%';
-      if(fontLabel) fontLabel.textContent = pct + '%';
-      if(fontInput) fontInput.value = pct;
+      if(fontInput && echo !== fontInput) fontInput.value = pct;
+      if(fontNumber && echo !== fontNumber) fontNumber.value = pct;
+      try{ localStorage.setItem('ecn-font-scale', String(pct)); }catch(e){}
+      return pct;
     }
     var savedScale = 100;
     try{
       var s = parseInt(localStorage.getItem('ecn-font-scale'), 10);
-      if(!isNaN(s)) savedScale = Math.max(85, Math.min(140, s));
+      if(!isNaN(s)) savedScale = clampFont(s);
     }catch(e){}
     applyFontScale(savedScale);
     if(fontInput){
       fontInput.addEventListener('input', function(){
-        var pct = parseInt(fontInput.value, 10) || 100;
-        applyFontScale(pct);
-        try{ localStorage.setItem('ecn-font-scale', String(pct)); }catch(e){}
+        applyFontScale(parseInt(fontInput.value, 10), fontInput);
       });
     }
+    if(fontNumber){
+      fontNumber.addEventListener('input', function(){
+        var raw = parseInt(fontNumber.value, 10);
+        // while typing, only apply once the number is in range — otherwise "9" on the way to "95"
+        // would momentarily snap the whole page to the minimum
+        if(!isNaN(raw) && raw >= FONT_MIN && raw <= FONT_MAX) applyFontScale(raw, fontNumber);
+      });
+      fontNumber.addEventListener('change', function(){
+        fontNumber.value = applyFontScale(parseInt(fontNumber.value, 10));
+      });
+      fontNumber.addEventListener('blur', function(){
+        fontNumber.value = applyFontScale(parseInt(fontNumber.value, 10));
+      });
+    }
+    function stepFont(delta){
+      var base = fontNumber ? parseInt(fontNumber.value, 10) : parseInt(fontInput.value, 10);
+      if(isNaN(base)) base = 100;
+      applyFontScale(base + delta);
+    }
+    var fontDownBtn = document.getElementById('fontScaleDown');
+    var fontUpBtn = document.getElementById('fontScaleUp');
+    if(fontDownBtn) fontDownBtn.addEventListener('click', function(){ stepFont(-5); });
+    if(fontUpBtn) fontUpBtn.addEventListener('click', function(){ stepFont(5); });
     var flashInput = document.getElementById('searchFlashInput');
     if(flashInput){
       try{
