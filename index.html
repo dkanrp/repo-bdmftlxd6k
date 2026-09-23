@@ -3349,6 +3349,27 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <h4>카르노맵(K-map) — 논리식을 그림으로 줄이기</h4>
       <p>불대수로 식을 줄이려면 어떤 공식을 언제 쓸지 판단해야 하는데, 카르노맵은 <strong>표에 1을 적고 묶기만 하면</strong> 최소화된 식이 나오도록 만든 도구입니다.</p>
       <p><strong>가장 중요한 규칙</strong>은 칸의 배열 순서입니다. 00 → 01 → <strong>11 → 10</strong> 순서로, 이웃한 칸이 <strong>딱 한 변수만 다르도록</strong> 배치합니다(그레이 코드). 이렇게 해야 묶었을 때 그 변수가 소거됩니다.</p>
+      <div class="circuit-fig">
+        <svg viewBox="0 0 320 114" width="320" height="114" role="img" aria-label="카르노맵 열 순서 00, 01, 11, 10을 네 개의 상자로 늘어놓고 상자 사이를 화살표로 이은 그림. 이웃한 상자끼리는 한 비트만 다르며, 맨 오른쪽 10과 맨 왼쪽 00을 잇는 점선 화살표가 양 끝도 서로 이웃임을 나타낸다.">
+          <defs><marker id="kmG" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 z" fill="var(--accent-2)"></path></marker></defs>
+          <rect x="24" y="24" width="56" height="34" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"></rect>
+          <rect x="96" y="24" width="56" height="34" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"></rect>
+          <rect x="168" y="24" width="56" height="34" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"></rect>
+          <rect x="240" y="24" width="56" height="34" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"></rect>
+          <text x="52" y="46" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">00</text>
+          <text x="124" y="46" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">01</text>
+          <text x="196" y="46" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">11</text>
+          <text x="268" y="46" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">10</text>
+          <line x1="81" y1="41" x2="95" y2="41" stroke="var(--accent-2)" stroke-width="1.8" marker-end="url(#kmG)"></line>
+          <line x1="153" y1="41" x2="167" y2="41" stroke="var(--accent-2)" stroke-width="1.8" marker-end="url(#kmG)"></line>
+          <line x1="225" y1="41" x2="239" y2="41" stroke="var(--accent-2)" stroke-width="1.8" marker-end="url(#kmG)"></line>
+          <text x="160" y="16" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--ink-soft)">이웃끼리 항상 1비트만 변화</text>
+          <path d="M268,59 L268,86 L52,86 L52,59" fill="none" stroke="var(--accent-2)" stroke-width="1.8" stroke-dasharray="5 4" marker-start="url(#kmG)" marker-end="url(#kmG)"></path>
+          <text x="160" y="104" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="var(--accent-2)">맨 끝과 맨 앞도 이웃 (10 → 00 도 1비트)</text>
+        </svg>
+        <p class="cap">칸을 그레이 코드 순서로 놓는 이유 — 이웃이 <strong>한 변수만</strong> 달라야 묶었을 때 그 변수가 소거됩니다. 양 끝도 이어져 있어 맵은 사실상 원통입니다. 만약 2진수 순서(00·01·<strong>10</strong>·11)로 두면 01→10에서 두 비트가 한꺼번에 바뀌어 묶을 수 없습니다.</p>
+      </div>
+
       <div class="tablewrap">
         <table>
           <thead><tr><th>AB \ C</th><th>0</th><th>1</th></tr></thead>
@@ -3360,6 +3381,37 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
           </tbody>
         </table>
       </div>
+      <div class="circuit-fig">
+        <svg viewBox="0 0 210 230" width="210" height="230" role="img" aria-label="3변수 카르노맵. 세로축 AB가 00, 01, 11, 10 순서이고 가로축 C가 0과 1. AB가 01인 가로 한 줄의 두 칸에 1이 적혀 있고 그 두 칸이 묶여 있다.">
+          <line x1="16" y1="26" x2="16" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="76" y1="26" x2="76" y2="216" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <line x1="136" y1="26" x2="136" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="196" y1="26" x2="196" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="26" x2="196" y2="26" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="64" x2="196" y2="64" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <line x1="16" y1="102" x2="196" y2="102" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="140" x2="196" y2="140" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="178" x2="196" y2="178" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="216" x2="196" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <text x="46" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)">AB\C</text>
+          <text x="106" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">0</text>
+          <text x="166" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">1</text>
+          <text x="46" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">00</text>
+          <text x="46" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">01</text>
+          <text x="46" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">11</text>
+          <text x="46" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">10</text>
+          <rect x="80" y="106" width="112" height="30" rx="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <text x="106" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+          <text x="166" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+          <text x="106" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="166" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="106" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+          <text x="166" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+          <text x="106" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+          <text x="166" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+        </svg>
+        <p class="cap"><strong>2칸 묶음 → 변수 1개 소거.</strong> AB=01 줄이 통째로 1이므로 C가 0·1 둘 다 — C가 사라지고 A&#773;B만 남습니다. Y = A&#773;B</p>
+      </div>
       <p><strong>묶는 규칙</strong></p>
       <ul>
         <li>1이 적힌 칸끼리 <strong>2의 거듭제곱 개수</strong>(1, 2, 4, 8…)로 묶는다</li>
@@ -3368,6 +3420,102 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         <li>맵의 <strong>양 끝은 서로 이어져 있다</strong>(원통처럼) — 맨 위와 맨 아래, 맨 왼쪽과 맨 오른쪽도 이웃이다</li>
         <li>묶음 안에서 <strong>값이 변하는 변수는 지우고, 변하지 않는 변수만</strong> 남겨 적는다</li>
       </ul>
+      <div class="circuit-fig">
+        <svg viewBox="0 0 300 232" width="300" height="232" role="img" aria-label="4변수 카르노맵. 가운데 네 칸이 정사각형 모양으로 묶여 있으며 묶인 칸은 AB가 01과 11, CD가 01과 11인 자리이다.">
+          <line x1="16" y1="26" x2="16" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="68" y1="26" x2="68" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="120" y1="26" x2="120" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="172" y1="26" x2="172" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="224" y1="26" x2="224" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="276" y1="26" x2="276" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="26" x2="276" y2="26" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="64" x2="276" y2="64" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="102" x2="276" y2="102" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="140" x2="276" y2="140" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="178" x2="276" y2="178" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="216" x2="276" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="64" x2="276" y2="64" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <line x1="68" y1="26" x2="68" y2="216" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <text x="42" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)">AB\CD</text>
+          <text x="94" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">00</text>
+          <text x="146" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">01</text>
+          <text x="198" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">11</text>
+          <text x="250" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">10</text>
+          <text x="42" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">00</text>
+          <text x="42" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">01</text>
+          <text x="42" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">11</text>
+          <text x="42" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">10</text>
+          <rect x="124" y="106" width="96" height="68" rx="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <text x="94" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="94" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="198" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="250" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="94" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="198" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="250" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="94" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+        </svg>
+        <p class="cap"><strong>4칸 묶음 → 변수 2개 소거.</strong> 묶음 안에서 A(0→1)와 C(0→1)는 변하니 소거, B와 D는 계속 1이니 남습니다. Y = BD</p>
+      </div>
+      <div class="circuit-fig">
+        <svg viewBox="0 0 300 232" width="300" height="232" role="img" aria-label="4변수 카르노맵의 네 모서리 칸에 각각 1이 적혀 있고 네 칸이 하나의 묶음으로 표시되어 있다. 맵 위쪽과 왼쪽 바깥에 점선 화살표가 있어 맨 위와 맨 아래, 맨 왼쪽과 맨 오른쪽이 서로 이웃임을 나타낸다.">
+          <defs><marker id="kmA" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 z" fill="var(--accent-2)"></path></marker></defs>
+          <line x1="16" y1="26" x2="16" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="68" y1="26" x2="68" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="120" y1="26" x2="120" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="172" y1="26" x2="172" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="224" y1="26" x2="224" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="276" y1="26" x2="276" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="26" x2="276" y2="26" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="64" x2="276" y2="64" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="102" x2="276" y2="102" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="140" x2="276" y2="140" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="178" x2="276" y2="178" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="216" x2="276" y2="216" stroke="var(--line)" stroke-width="1.5"></line>
+          <line x1="16" y1="64" x2="276" y2="64" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <line x1="68" y1="26" x2="68" y2="216" stroke="var(--ink-soft)" stroke-width="2"></line>
+          <text x="42" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)">AB\CD</text>
+          <text x="94" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">00</text>
+          <text x="146" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">01</text>
+          <text x="198" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">11</text>
+          <text x="250" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">10</text>
+          <text x="42" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">00</text>
+          <text x="42" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">01</text>
+          <text x="42" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">11</text>
+          <text x="42" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">10</text>
+          <rect x="72" y="68" width="44" height="30" rx="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <rect x="228" y="68" width="44" height="30" rx="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <rect x="72" y="182" width="44" height="30" rx="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <rect x="228" y="182" width="44" height="30" rx="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+          <text x="94" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="146" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="94" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="94" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="146" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="164" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="94" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <text x="146" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="198" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="400" fill="var(--ink-soft)">0</text>
+          <text x="250" y="202" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          <path d="M94,26 L94,9 L250,9 L250,26" fill="none" stroke="var(--accent-2)" stroke-width="1.8" stroke-dasharray="5 4" marker-start="url(#kmA)" marker-end="url(#kmA)"></path>
+          <path d="M16,83 L6,83 L6,197 L16,197" fill="none" stroke="var(--accent-2)" stroke-width="1.8" stroke-dasharray="5 4" marker-start="url(#kmA)" marker-end="url(#kmA)"></path>
+        </svg>
+        <p class="cap"><strong>네 모서리도 한 묶음입니다.</strong> 맵은 위아래·좌우가 이어진 원통이라 네 귀퉁이가 서로 이웃입니다. B와 D가 모두 0으로 유지되므로 Y = B&#773;D&#773;</p>
+      </div>
       <p><strong>무관항(Don't care, X)</strong>은 그 입력이 절대 들어오지 않거나 출력이 무엇이든 상관없는 경우로, 묶음을 키우는 데 도움이 되면 1로 쓰고 아니면 무시합니다.</p>
 
       <div class="example">
@@ -3378,6 +3526,30 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
           <li>묶음 안에서 A는 0과 1로 <strong>변하므로 소거</strong>, B는 계속 1로 <strong>유지</strong></li>
           <li>따라서 <strong>Y = B</strong> (불대수로도 A&#773;B+AB = B(A&#773;+A) = B·1 = B)</li>
         </ol>
+        <div class="circuit-fig">
+          <svg viewBox="0 0 200 150" width="200" height="150" role="img" aria-label="2변수 카르노맵. 가로축은 B가 0과 1, 세로축은 A가 0과 1. B가 1인 오른쪽 세로 두 칸에 1이 적혀 있고 그 두 칸이 하나의 묶음으로 둘러싸여 있다.">
+            <line x1="6" y1="8" x2="6" y2="132" stroke="var(--line)" stroke-width="1.5"></line>
+            <line x1="62" y1="8" x2="62" y2="132" stroke="var(--ink-soft)" stroke-width="2"></line>
+            <line x1="118" y1="8" x2="118" y2="132" stroke="var(--line)" stroke-width="1.5"></line>
+            <line x1="174" y1="8" x2="174" y2="132" stroke="var(--line)" stroke-width="1.5"></line>
+            <line x1="6" y1="8" x2="174" y2="8" stroke="var(--line)" stroke-width="1.5"></line>
+            <line x1="6" y1="44" x2="174" y2="44" stroke="var(--ink-soft)" stroke-width="2"></line>
+            <line x1="6" y1="88" x2="174" y2="88" stroke="var(--line)" stroke-width="1.5"></line>
+            <line x1="6" y1="132" x2="174" y2="132" stroke="var(--line)" stroke-width="1.5"></line>
+            <text x="34" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)">A\B</text>
+            <text x="90" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">0</text>
+            <text x="146" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">1</text>
+            <text x="34" y="71" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">0</text>
+            <text x="34" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-soft)">1</text>
+            <rect x="122" y="48" width="48" height="80" rx="20" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"></rect>
+            <text x="90" y="71" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+            <text x="146" y="71" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+            <text x="90" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="var(--ink-soft)">0</text>
+            <text x="146" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="700" fill="var(--accent-strong)">1</text>
+          </svg>
+          <p class="cap">묶음 안에서 <strong>A는 0→1로 변하니 소거</strong>, <strong>B는 계속 1이니 남는다</strong>. 그래서 Y = B.</p>
+        </div>
+
       </div>
 
       <h3>9. 메모리</h3>
@@ -4240,7 +4412,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v105 (2026-09-23)</span>
+              <span class="mono" id="noteVersionLabel">v106 (2026-09-23)</span>
               <button type="button" id="updateCheckBtn" class="updatebtn">🔄 업데이트 확인</button>
               <span id="updateStatus" class="updatestatus" role="status" aria-live="polite"></span>
               <br>앱을 껐다 켜도 자동으로 최신 내용을 받아오지만, 지금 바로 확인하고 싶을 때 이 버튼을 누르세요.
@@ -5529,6 +5701,11 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
      '그레이 코드 순서 — 이웃이 한 변수만 달라야 묶었을 때 그 변수가 소거됨','상'],
     ['카르노맵에서 1을 4칸으로 묶으면 소거되는 변수는 몇 개인가?','2개',
      ['1개','3개','4개'],'2칸이면 1개, 4칸이면 2개, 8칸이면 3개 소거 — 묶음이 클수록 많이 줄어듦','중'],
+    ['카르노맵에서 맨 왼쪽 열과 맨 오른쪽 열의 관계는?','서로 이웃이므로 묶을 수 있다',
+     ['서로 가장 먼 칸이다','묶을 수 없다','항상 값이 같다'],
+     '맵은 위아래·좌우가 이어진 원통 — 그래서 네 모서리 네 칸도 하나로 묶인다','상'],
+    ['카르노맵에서 1을 2칸으로 묶었을 때 소거되는 변수는 몇 개인가?','1개',
+     ['2개','3개','0개'],'2칸=1개, 4칸=2개, 8칸=3개 — 묶음 크기가 2의 몇 제곱인지가 소거 개수','하'],
     ['DRAM이 SRAM과 달리 반드시 필요로 하는 동작은?','재충전(리프레시)',
      ['클럭 분주','인터럽트','직병렬 변환'],
      'DRAM은 콘덴서에 전하를 담아 기억하므로 새어나가기 전에 주기적으로 다시 채워야 함','하'],
