@@ -3654,7 +3654,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <p class="note">CD 플레이어나 디지털 오디오는 저장할 때 ADC(소리→디지털 파일), 재생할 때 DAC(디지털 파일→소리)를 거칩니다.</p>
       <p><strong>나이키스트(Nyquist) 표본화 정리</strong>: ADC가 아날로그 신호를 몇 번이나 "찍어야" 원래 신호를 정보 손실 없이 완벽히 복원할 수 있는지를 정하는 원칙입니다 — <strong>표본화 주파수는 원신호에 담긴 최고 주파수 성분의 2배 이상</strong>이어야 합니다. 이보다 낮게 샘플링하면 원신호에 없던 가짜 저주파 성분이 나타나는 <strong>앨리어싱(Aliasing)</strong> 현상이 발생해 원신호를 되살릴 수 없습니다.</p>
       <p class="formula">f<sub>s</sub> ≥ 2f<sub>max</sub></p>
-      <p><strong>칩 간(보드 내부) 직렬통신 방식</strong>: 마이크로프로세서가 센서·메모리 등 주변장치와 데이터를 주고받을 때 흔히 쓰는 3가지 직렬 통신 규격입니다. Part 4의 계측기-PC 인터페이스(GPIB·USB 등)가 "장비와 PC" 사이의 통신이라면, 이들은 "보드 안 칩과 칩" 사이의 통신이라는 점이 다릅니다.</p>
+      <p><strong>칩 간(보드 내부) 직렬통신 방식</strong>: 마이크로프로세서가 센서·메모리 등 주변장치와 데이터를 주고받을 때 흔히 쓰는 3가지 직렬 통신 규격입니다. Part 4의 계측기 인터페이스(GPIB·USB 등)가 "장비 바깥"을 잇는 통신이라면, 이들은 "보드 안 칩과 칩" 사이의 통신이라는 점이 다릅니다.</p>
       <div class="tablewrap">
         <table>
           <thead><tr><th>방식</th><th>배선 수</th><th>특징</th></tr></thead>
@@ -4142,8 +4142,9 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <h3>3. 함수발생기</h3>
       <p>사인파·구형파·삼각파 등 원하는 파형을 만들어내는 신호원으로, 주파수와 진폭을 조정해 회로에 시험 신호를 넣어주는 용도로 씁니다. 오실로스코프와 짝을 이뤄 "신호를 넣고(함수발생기) → 결과를 본다(오실로스코프)" 구조로 실습합니다.</p>
 
-      <h3>4. 계측기-PC 인터페이스</h3>
-      <p>계측장비를 PC와 연결해 자동으로 측정값을 읽거나 기록하려면 통신 인터페이스가 필요합니다. 출제기준의 "계측기-PC 인터페이스" 항목이 다루는 부분으로, 각 방식의 속도·편의성 차이를 구분해두면 좋습니다.</p>
+      <h3>4. 계측기 인터페이스</h3>
+      <p>계측장비를 PC나 다른 장비와 연결해 측정값을 자동으로 읽거나 기록하려면 통신 인터페이스가 필요합니다. 출제기준의 "계측기 인터페이스" 항목이 다루는 부분으로, 각 방식의 속도·편의성 차이를 구분해두면 좋습니다.</p>
+      <p class="note">2027년 개정에서 이 항목의 이름이 <strong>"계측기-PC 인터페이스"에서 "계측기 인터페이스"로</strong> 바뀌었습니다. PC 연결에만 한정하지 않고 <strong>장비와 장비 사이의 연결까지</strong> 포함하는 쪽으로 넓어진 것으로 보면 됩니다.</p>
       <div class="tablewrap">
         <table>
           <thead><tr><th>인터페이스</th><th>속도</th><th>특징</th></tr></thead>
@@ -4380,7 +4381,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         <li><strong>③ 부품 선정</strong>: 위 결과와 부품사양서(데이터시트)를 근거로 최종 부품을 확정함</li>
       </ul>
 
-      <h3>4. 하드웨어 성능구현 — 기판 제작과 시제품 조립</h3>
+      <h3>4. 하드웨어 시제품 성능평가 — 기판 제작과 시제품 조립</h3>
       <p>회로도가 확정되면 실제 기판(PCB)에 부품을 올려 시제품을 만드는 단계입니다. 여기서는 "어떻게 납땜하고 배선하는가"와 "조립하다 보면 흔히 생기는 불량이 무엇인가"가 핵심 출제 포인트입니다.</p>
       <ul>
         <li><strong>부품 실장 방법</strong>: THT 부품은 <strong>웨이브 솔더링</strong>(기판 아래로 납땜파도를 흘려보내 한번에 납땜), SMD 부품은 <strong>리플로우 솔더링</strong>(크림 납을 인쇄한 뒤 고온의 노(reflow oven)를 통과시켜 한번에 녹여 붙임)으로 실장하는 것이 일반적입니다. SMT(표면실장기술) 공정 순서는 <strong>① 솔더페이스트 도포 → ② 부품 실장 → ③ 리플로우(가열) → ④ 검사</strong> 순서로 진행됩니다.</li>
@@ -4402,7 +4403,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       </div>
       <p class="note">시제품 조립을 마치면 규격·부품사양에 맞춰 계측장비로 <strong>시제품 성능 검사</strong>를 진행해 문제점을 찾아 개선합니다.</p>
 
-      <h3>5. 하드웨어 완성품 검증 — 조립·부착·분리·교환</h3>
+      <h3>5. 하드웨어 개발품질 검증 — 조립·부착·분리·교환</h3>
       <ul>
         <li><strong>조립 공정과 조립 도구</strong>: 정해진 순서(공정)대로 조립해야 재현성 있는 품질이 나오며, 인두기·니퍼·롱노즈플라이어 등 도구의 특성에 맞게 사용해야 부품 손상을 막을 수 있음</li>
         <li><strong>부품의 부착·분리·교환(리워크)</strong>: 불량 부품을 발견하면 인두기·납흡입기(솔더 석션) 등으로 기존 부품을 분리(디솔더링)하고 새 부품으로 교체 — 과도한 열은 기판 패턴을 손상시킬 수 있어 주의가 필요함</li>
@@ -4674,7 +4675,8 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
       <header class="page-head">
         <p class="eyebrow">Curriculum Check</p>
         <h2>출제기준 대조표</h2>
-        <p class="lede">공식 출제기준(한국산업인력공단, 2024.1.1.~2026.12.31.)의 <strong>세부항목·세세항목</strong>을 이 노트의 어느 부분이 다루는지 전부 대조한 자가 점검 체크리스트입니다. 이 노트를 더 보강할 때마다 이 표를 기준으로 "아직 대조가 안 된 항목"을 찾아 채워 넣습니다.</p>
+        <p class="lede">공식 출제기준(한국산업인력공단)의 <strong>세부항목·세세항목</strong>을 이 노트의 어느 부분이 다루는지 전부 대조한 자가 점검 체크리스트입니다. <strong>2027.01.01.~2029.12.31. 개정 기준을 반영</strong>했습니다.</p>
+      <div class="disclaimer" style="margin-bottom:1rem;"><strong>2027년 개정으로 달라진 점</strong> — 필기는 <strong>문제수 60문항·1시간</strong>과 세세항목 내용이 그대로이고, 바뀐 것은 명칭뿐입니다. ① 주요항목 3 <span class="mono">하드웨어 성능구현 → 하드웨어 시제품 성능평가</span> ② 주요항목 4 <span class="mono">하드웨어 완성품 검증 → 하드웨어 개발품질 검증</span> ③ 세세항목 <span class="mono">계측기-PC 인터페이스 → 계측기 인터페이스</span>. 따라서 <strong>공부할 이론의 범위는 달라지지 않습니다.</strong> (실기는 광센서기기 시제품 제작·하드웨어 PCB설계가 신설되는 등 개편 폭이 큽니다 — 이 노트는 필기 전용입니다.)</div>
       </header>
       <div id="curriculumMapContent"></div>
     </section>
@@ -4732,6 +4734,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         <li><span class="stag">규정 · 전선의 선정과 식별</span><br>KEC 정리 — 전선의 선정 및 식별(L1 갈색·L2 흑색·L3 회색·N 청색·PE 녹황)<br><a href="https://www.midascad.com/cad_archive/electricity-cad-kec-2" target="_blank" rel="noopener">midascad.com — 전선의 선정 및 식별</a></li>
         <li><span class="stag">법령 · 감전보호 기준</span><br>국가법령정보센터 — 전기설비기술기준·KEC 근거 조문 (누전차단기 정격감도전류 30mA·동작시간 0.03초, 저압 옥내배선 2.5㎟ 연동선)<br><a href="https://www.law.go.kr/" target="_blank" rel="noopener">law.go.kr — 전기설비 관련 법령</a></li>
         <li><span class="stag">교재 · 범위 대조(비공개 자료)</span><br>시판 필기 대비 교재(Craftsman Electronic Apparatus 계열) 1권 — <strong>주제 구성과 자주 쓰이는 수치를 대조하는 용도로만</strong> 참고했습니다. 저작물이므로 링크·원문 인용은 싣지 않으며, 이 노트의 문장과 문제는 모두 새로 작성했습니다.<br><span class="mono">개인 소장 도서 · 2026-09-27 대조</span></li>
+        <li><span class="stag">공식 · 개정 출제기준</span><br>한국산업인력공단 — 전자기능사 출제기준 <strong>2027.01.01.~2029.12.31.</strong> (필기: 60문항·1시간 유지, 주요항목 3·4 명칭 변경, 세세항목 "계측기 인터페이스"로 변경)<br><a href="https://www.q-net.or.kr/crf005.do?id=crf00503&amp;jmCd=6790" target="_blank" rel="noopener">q-net.or.kr — 전자기능사 상세정보</a></li>
       </ul>
 
       <div class="disclaimer">
@@ -4832,7 +4835,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
               숫자를 직접 눌러 입력하거나 −/+ 버튼으로도 조절할 수 있습니다. 수식·분수를 포함한 페이지 전체 글자 크기가 바뀝니다.
             </td></tr>
             <tr><td>노트 버전</td><td>
-              <span class="mono" id="noteVersionLabel">v107 (2026-09-27)</span>
+              <span class="mono" id="noteVersionLabel">v108 (2026-09-27)</span>
               <button type="button" id="updateCheckBtn" class="updatebtn">🔄 업데이트 확인</button>
               <span id="updateStatus" class="updatestatus" role="status" aria-live="polite"></span>
               <br>앱을 껐다 켜도 자동으로 최신 내용을 받아오지만, 지금 바로 확인하고 싶을 때 이 버튼을 누르세요.
@@ -5858,7 +5861,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     ['오래전부터 계측기 전용으로 쓰여온, 전용 카드와 별도 설정이 필요한 병렬 통신 방식은?','GPIB',['USB','RS-232','LAN'],'GPIB는 여러 계측기를 안정적으로 동시 제어하기 좋은 계측기 전용 버스','상'],
     ['PC의 전통적인 직렬 포트로, 자동 인식이 안 되고 배선·설정에 주의가 필요한 인터페이스는?','RS-232',['USB','GPIB','LAN'],'RS-232는 저렴하지만 속도가 느리고 설정이 번거로움','중'],
     ['네트워크를 통해 원격으로 여러 계측기를 동시에 제어·모니터링할 수 있는 인터페이스는?','LAN(이더넷)',['GPIB','RS-232','USB'],'LAN 연결은 원격 제어·다중 계측기 모니터링에 유리함','중'],
-    ['계측기-PC 인터페이스를 활용하는 주된 목적은?','측정값을 자동으로 읽고 기록·관리하기 위해',['계측기의 정확도를 높이기 위해','계측기 전원을 아끼기 위해','계측기 크기를 줄이기 위해'],'PC와 연결하면 측정 데이터를 자동으로 수집·해석·관리할 수 있음','중']
+    ['계측기 인터페이스를 활용하는 주된 목적은?','측정값을 자동으로 읽고 기록·관리하기 위해',['계측기의 정확도를 높이기 위해','계측기 전원을 아끼기 위해','계측기 크기를 줄이기 위해'],'PC와 연결하면 측정 데이터를 자동으로 수집·해석·관리할 수 있음','중']
   ];
   var poolManage = [
     ['여러 디지털 신호선의 값을 동시에 관찰해 디지털 회로를 진단하는 장비는?','로직 아날라이저',['스펙트럼 분석기','함수발생기','서미스터'],'로직 아날라이저는 다채널 디지털 신호를 동시에 표시·분석함','중'],
@@ -8032,7 +8035,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     p4_freq: {title:'파형에서 주파수 계산', diffs:['중','상'], gen:genP4Freq},
     p4_volts: {title:'화면 전압(Vp-p)·프로브 감쇠비 계산', diffs:['중','상'], gen:genP4Volts},
     p4_lissajous: {title:'리사쥬 도형', diffs:poolDiffs(poolLiss), gen:poolConcept(poolLiss)},
-    p4_interface: {title:'계측기-PC 인터페이스', diffs:poolDiffs(poolInterface), gen:poolConcept(poolInterface)},
+    p4_interface: {title:'계측기 인터페이스', diffs:poolDiffs(poolInterface), gen:poolConcept(poolInterface)},
     p4_manage: {title:'계측장비 관리·진단장비·매뉴얼', diffs:poolDiffs(poolManage), gen:poolConcept(poolManage)},
     p4_shunt: {title:'분류기와 배율기(측정범위 확장)', diffs:['하','중','상'], gen:genP4Shunt},
     p4_bridge: {title:'휘트스톤 브리지', diffs:['하','중','상'], gen:genP4Bridge},
@@ -8165,7 +8168,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     p4_freq: { part:'part4', text:'2. 오실로스코프' },
     p4_volts: { part:'part4', text:'2. 오실로스코프' },
     p4_lissajous: { part:'part4', text:'2. 오실로스코프' },
-    p4_interface: { part:'part4', text:'4. 계측기-PC 인터페이스' },
+    p4_interface: { part:'part4', text:'4. 계측기 인터페이스' },
     p4_manage: { part:'part4', text:'5. 계측장비 관리와 진단장비' },
     p4_shunt: { part:'part4', text:'1. 멀티미터' },
     p4_bridge: { part:'part4', text:'7. 브리지 회로' },
@@ -8175,8 +8178,8 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     p5_color: { part:'part5', text:'2. 저항 색띠 읽기' },
     p5_datasheet: { part:'part5', text:'3. 부품선정과 데이터시트' },
     p5_package: { part:'part5', text:'3. 부품선정과 데이터시트' },
-    p5_assembly: { part:'part5', text:'4. 하드웨어 성능구현' },
-    p5_verify: { part:'part5', text:'5. 하드웨어 완성품 검증' },
+    p5_assembly: { part:'part5', text:'4. 하드웨어 시제품 성능평가' },
+    p5_verify: { part:'part5', text:'5. 하드웨어 개발품질 검증' },
     p5_pcb: { part:'part5', text:'9. PCB 구조와 부품 정격' },
     p5_reliability: { part:'part5', text:'6. 신뢰성 검증' },
     p5_safety: { part:'part5', text:'7. 지역별 안전규격 인증' }
@@ -8976,7 +8979,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     renderExamHistoryPage();
   }
   /* ================= curriculum self-check map ================= */
-  /* 공식 출제기준(한국산업인력공단, 전자기능사, 2024.1.1.~2026.12.31.)의 세부항목·세세항목을
+  /* 공식 출제기준(한국산업인력공단, 전자기능사, 2027.01.01.~2029.12.31.)의 세부항목·세세항목을
      이 노트 어디가 다루는지 전부 대조해둔 표. 노트를 보강할 때마다 이 표부터 갱신한다. */
   var ELEC_CURRICULUM_MAP = [
     { major:'1. 전기이론', subs:[
@@ -9117,7 +9120,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         ['부품사양서','Part5 §3 데이터시트']
       ]}
     ]},
-    {major:'3. 하드웨어 성능구현', subs:[
+    {major:'3. 하드웨어 시제품 성능평가', subs:[
       {sub:'3.1 기판 제작', leaves:[
         ['부품 실장 방법','Part5 §4 리플로우·웨이브 솔더링 · §8 납땜 온도·무연납'],
         ['회로기판 배선','Part5 §4 PCB 배선 규칙'],
@@ -9133,7 +9136,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         ['성능 평가','Part5 §6 기능시험·성능시험']
       ]}
     ]},
-    {major:'4. 하드웨어 완성품 검증', subs:[
+    {major:'4. 하드웨어 개발품질 검증', subs:[
       {sub:'4.1 완성품 제작', leaves:[
         ['조립 공정','Part5 §5 완성품 검증'],
         ['조립 도구 사용','Part5 §5 완성품 검증'],
@@ -9169,7 +9172,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
         ['전자통신이론','Part2 §8 변조와 복조']
       ]},
       {sub:'5.3 계측장비 활용', leaves:[
-        ['계측기-PC 인터페이스','Part4 §4 계측기-PC 인터페이스'],
+        ['계측기 인터페이스','Part4 §4 계측기 인터페이스'],
         ['계측신호의 해석','Part4 §2 오실로스코프 · §8 정확도·유효숫자 · §9 주파수 측정'],
         ['시험장비 및 진단장비 사용','Part4 §5 · Part5 §7']
       ]}
@@ -9241,7 +9244,7 @@ td.mono, th.mono{font-family:"IBM Plex Mono",monospace;}
     {term:'오실로스코프', symbol:'', part:'p4', def:'전기신호의 파형(시간에 따른 변화)을 화면으로 보여주는 계측기.'},
     {term:'오실로스코프 눈금설정', symbol:'TIME/DIV, VOLTS/DIV', part:'p4', def:'TIME/DIV=가로 한 칸의 시간, VOLTS/DIV=세로 한 칸의 전압.'},
     {term:'함수발생기', symbol:'', part:'p4', def:'사인파·구형파·삼각파 등 시험용 신호를 만들어내는 장비.'},
-    {term:'계측기-PC 인터페이스', symbol:'GPIB/USB/LAN', part:'p4', def:'GPIB=계측기 전용 병렬버스, USB=자동인식, LAN=원격 다중제어.'},
+    {term:'계측기 인터페이스', symbol:'GPIB/USB/LAN', part:'p4', def:'GPIB=계측기 전용 병렬버스, USB=자동인식, LAN=원격 다중제어.'},
     {term:'측정오차 4종', symbol:'계기·이론·개인·환경오차', part:'p4', def:'계기오차=기기 자체 결함, 이론오차=방법·근사의 한계, 개인오차=측정자 습관, 환경오차=온도·습도 등.'},
     {term:'교정', symbol:'calibration', part:'p4', def:'계측기 자체의 정확도를 표준기와 비교해 바로잡는 주기적 작업.'},
     {term:'리사쥬 도형', symbol:'', part:'p4', def:'두 신호를 오실로스코프의 X·Y축에 각각 넣어 만든 도형. 원이면 주파수비1:1·위상차90°.'},
